@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Morgans on the Equator</title>
+    <link href='http://fonts.googleapis.com/css?family=Questrial|Bilbo+Swash+Caps|Princess+Sofia|Ribeye|Bilbo|Roboto|Rye|Cherry+Swash|Varela+Round|Alegreya|Raleway' rel='stylesheet' type='text/css'/>    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link href="/stylesheets/blog.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+    <header>
+        <h1 id="title">Morgans on the Equator</h1>
+        <nav id="mainNav">
+            <ul class="topMenu">
+                <li><a href="/">blog</a></li>
+                <li><a href="/about">about</a></li>
+                <li><a href="/photos">photos</a></li>
+            </ul>
+        </nav>
+    </header>
+{+mainBody}
+
+{/mainBody}
+    <footer>Morgans on the Equator is a blog for the Morgan family. &copy; 2014</footer>
+</body>
+</html>

@@ -1,0 +1,35 @@
+{>"mainLayout"/}
+{<mainBody}
+<h1>Create a post for the blog!</h1>
+<form method="post" action="/posts/create">
+    <ul>
+        <li>
+            <label for="slug">SLUG</label>
+            <input id="slug" name="slug">
+        </li>
+        <li>
+            <label for="title">Title</label>
+            <input id="title" name="title">
+        </li>
+        <li>
+            <label for="author">Author</label>
+            <input id="author" name="author">
+        </li>
+        <li>
+            <label for="preview">Preview</label>
+            <textarea rows="50" cols="50" id="preview" name="preview">Enter preview here....</textarea>
+        </li>
+        <li>
+            <label for="post">Post</label>
+            <textarea rows="50" cols="50" id="post" name="post">Enter main post here...</textarea>
+        </li>
+        <li>
+            <label for="tags">Tags</label>
+            <input id="tags" name="tags">
+        </li>
+        <li>
+            <input type="submit" id="submitBtn" value="Save">
+        </li>
+    </ul>
+</form>
+{/mainBody}

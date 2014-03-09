@@ -1,0 +1,10 @@
+{>"mainLayout"/}
+{<mainBody}
+    <section id="mainStory">
+        <h2>{title}</h2>
+        <h4>Posted by {author} on {creationDate}</h4>
+            <div class="blogPost">
+                {postText|s}
+            </div>
+    </section>
+{/mainBody}

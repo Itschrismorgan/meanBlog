@@ -1,0 +1,10 @@
+{>"mainLayout"/}
+{<mainBody}
+    <section id="photoStream">
+        {#photos}
+            <div class="photos" >
+                <img src="{photoUrl}"/>
+            </div>
+        {/photos}
+    </section>
+{/mainBody}
