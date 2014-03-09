@@ -1,0 +1,170 @@
+#title {
+	font-family: 'Bilbo Swash Caps', cursive;
+	text-align: center;
+  font-size:55px;
+}
+
+@media screen and (min-width: 500px) {
+  #mainNav {
+    margin: 50px auto;
+    height: 40px;
+    width: 50%;
+  }
+  
+  .topMenu {
+    width:100%;
+    margin: 0px auto;
+    overflow: auto;
+    list-style: none;
+    padding:0px;
+  }
+  
+  .topMenu li {
+    font-family: 'Cherry Swash', cursive;
+    font-size:20px;
+    font-weight:300;
+    float: left;
+    border-right: 1px solid #999;
+    width:32%;
+    text-align:center;
+  }
+  
+  .topMenu li:last-child {
+    border:0px;
+  }
+    
+  #rightInfo {
+    float:right;
+    width:20%;
+  }
+  
+  #digest {
+    float:left;
+    width:80%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  #mainNav {
+    margin: 50px auto;
+    height: 40px;
+    width: 90%;
+  }
+  
+  .topMenu {
+    width:100%;
+    margin: 0px auto;
+    overflow: auto;
+    list-style: none;
+    padding:0px;
+  }
+  
+  .topMenu li {
+    font-family: 'Cherry Swash', cursive;
+    font-size:20px;
+    font-weight:300;
+    float: left;
+    border-right: 1px solid #999;
+    width:32%;
+    text-align:center;
+  }
+  
+  .topMenu li:last-child {
+    border:0px;
+  }
+    
+  #rightInfo {
+    visibility:hidden;
+  }
+  
+  #digest {
+    float:left;
+    width:100%;
+  }
+}
+
+#mainStory {
+  margin: 0px auto;
+}
+
+@media screen and (min-width: 800px) {
+  #mainStory {
+    width: 60%;
+  }
+}
+
+@media screen and (min-width: 350px) and (max-width: 800px) {
+  #mainStory {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  #mainStory {
+    width: 95%;
+  }
+}
+
+#mainStory > h2{
+	font-family: 'Bilbo Swash Caps', cursive;
+  font-size:35px;
+}
+
+#mainStory > h6{
+	font-family: 'Cherry Swash', cursive;
+}
+
+
+@media screen and (min-width: 800px) {
+  .story {
+    width:50%;
+    float:left;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .story {
+    width:100%;
+    float:left;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .photos {
+    width:50%;
+    float:left;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .photos {
+    width:100%;
+    float:left;
+  }
+}
+
+
+.story > h3 {
+	font-family: 'Bilbo Swash Caps', cursive;
+	padding-left: 1em;
+	padding-top: 1em;
+	
+}
+
+.story > h5 {
+	font-family: 'Bilbo Swash Caps', cursive;
+	padding-left: 1em;
+}
+
+
+.story > p {
+  font-family: 'Varela Round', sans-serif;
+  padding: 1em;
+}
+
+footer {
+  clear:both;
+  width:80%;
+  margin:0px auto;
+  text-align: center;
+}
