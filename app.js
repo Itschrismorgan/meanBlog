@@ -7,6 +7,7 @@ var express = require('express');
 var http = require('http');
 var path = require('path');
 var dustjs = require('adaro');
+var mongoose = require('mongoose');
 
 var app = express();
 
@@ -30,9 +31,20 @@ app.use(express.static(path.join(__dirname, 'public')));
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
-
+require('./app_server/models');
 require('./routes')(app);
 
-http.createServer(app).listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
+
+
+mongoose.connect('mongodb://localhost/meanBlog', function(err){
+
+    if(err){
+        console.log('Error connecting to MongoD!!!');
+        throw(err);
+    }
+
+    http.createServer(app).listen(app.get('port'), function(){
+        console.log('Express server listening on port ' + app.get('port'));
+    });
+
 });

@@ -1,11 +1,29 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>{title}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-</head>
-<body>
-<h1>{title}</h1>
-<p>Welcome to {title}</p>
-</body>
-</html>
+{>"mainLayout"/}
+{<mainBody}
+    <section id="mainBody">
+        <section id="digest">
+            {#postPreviews}
+                <div class="story">
+                    <h3>{title}</h3>
+                    <h5><em>posted on {creationDate}</em></h5>
+                    <p>{postPreview} <a href="/posts/{_id}"><em>read more...</em></a></p>
+                </div>
+            {/postPreviews}
+        </section>
+        <section id="rightInfo">
+            <div id="aboutme">
+                <p>We are family from Lexington, KY. We have moved to Equador to have a family adventure!</p>
+            </div>
+            <div id="tagcloud">
+                <p>Trip</p>
+                <p>Photos</p>
+                <p>Kids</p>
+                <p>Locals</p>
+                <p>Expat</p>
+            </div>
+            <div id="chrono-index">
+                Archive Tree
+            </div>
+        </section>
+    </section>
+{/mainBody}
