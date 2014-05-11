@@ -3,3 +3,4 @@
  */
 
 exports.Posts = require('./posts');
+exports.User = require('./user');
