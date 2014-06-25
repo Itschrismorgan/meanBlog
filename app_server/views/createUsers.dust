@@ -1,0 +1,27 @@
+{>"mainLayout"/}
+{<mainBody}
+<h1>Create a user for the blog!</h1>
+<form method="post" action="/user/create">
+    <ul>
+        <li>
+            <label for="username">Username</label>
+            <input id="username" name="username">
+        </li>
+        <li>
+            <label for="firstName">First Name</label>
+            <input id="firstName" name="firstName">
+        </li>
+        <li>
+            <label for="lastName">Last Name</label>
+            <input id="lastName" name="lastName">
+        </li>
+        <li>
+            <label for="password">password</label>
+            <input id="password" name="password">
+        </li>
+        <li>
+            <input type="submit" id="submitBtn" value="Save">
+        </li>
+    </ul>
+</form>
+{/mainBody}

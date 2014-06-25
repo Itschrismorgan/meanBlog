@@ -4,6 +4,10 @@
   font-size:55px;
 }
 
+#loginForm {
+    margin: 0px auto;
+}
+
 @media screen and (min-width: 500px) {
   #mainNav {
     margin: 50px auto;
@@ -13,10 +17,10 @@
   
   .topMenu {
     width:100%;
-    margin: 0px auto;
+    margin: 0 auto;
     overflow: auto;
     list-style: none;
-    padding:0px;
+    padding:0;
   }
   
   .topMenu li {
@@ -30,7 +34,7 @@
   }
   
   .topMenu li:last-child {
-    border:0px;
+    border:0;
   }
     
   #rightInfo {
@@ -53,10 +57,10 @@
   
   .topMenu {
     width:100%;
-    margin: 0px auto;
+    margin: 0 auto;
     overflow: auto;
     list-style: none;
-    padding:0px;
+    padding:0;
   }
   
   .topMenu li {
@@ -70,7 +74,7 @@
   }
   
   .topMenu li:last-child {
-    border:0px;
+    border:0;
   }
     
   #rightInfo {
@@ -84,7 +88,7 @@
 }
 
 #mainStory {
-  margin: 0px auto;
+  margin: 0 auto;
 }
 
 @media screen and (min-width: 800px) {
@@ -165,6 +169,6 @@
 footer {
   clear:both;
   width:80%;
-  margin:0px auto;
+  margin:0 auto;
   text-align: center;
 }

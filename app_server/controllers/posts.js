@@ -14,7 +14,13 @@ exports.posts = function(req, res){
 };
 
 exports.createPosts = function(req, res){
-    res.render('createPosts', {title: 'Create a posts'})
+    console.log(req.session.isLoggedIn);
+    if(req.session.isLoggedIn) {
+        res.render('createPosts', {title: 'Create a posts'})
+    } else {
+        console.log('Not logged in! Create post form disallowed!');
+        res.redirect('/');
+    }
 };
 
 exports.savePosts = function(req, res, next){
@@ -22,20 +28,25 @@ exports.savePosts = function(req, res, next){
     console.log(req.param('slug'));
     console.log(req.body);
 
-    var postToCreate = {
-        _id: req.param('slug'),
-        title: req.param('title'),
-        author: req.param('author'),
-        postPreview: req.param('preview'),
-        postText: req.param('post'),
-        tags: req.param('tags')
-    };
+    if(req.session.isLoggedIn){
+        var postToCreate = {
+            _id: req.param('slug'),
+            title: req.param('title'),
+            author: req.param('author'),
+            postPreview: req.param('preview'),
+            postText: req.param('post'),
+            tags: req.param('tags')
+        };
 
-    posts.create(postToCreate, function(err, createdPost){
-        if(err){
-            console.log('Error creating post!');
-            throw err;
-        }
-        res.redirect('/posts/'+createdPost._id);
-    });
+        posts.create(postToCreate, function(err, createdPost){
+            if(err){
+                console.log('Error creating post!');
+                throw err;
+            }
+            res.redirect('/posts/'+createdPost._id);
+        });
+    } else {
+        console.log('Error creating post! - Not logged in.');
+        res.redirect('/');
+    }
 };
