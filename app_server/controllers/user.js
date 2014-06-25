@@ -44,82 +44,53 @@ exports.authUser = function(req, res, next){
 };
 
 exports.createUser = function(req, res){
-    res.render('createUsers', {title: 'Create a user'})
+    if(req.session.isLoggedIn) {
+        res.render('createUsers', {title: 'Create a user'})
+    } else {
+        console.log('No logged in! Create User!');
+        res.redirect('/');
+    }
 };
 
 exports.saveUser = function(req, res, next){
     // validate input
     if(req.session.isLoggedIn){
-
+        createUser(req,res);
     } else {
         user.count({}, function(err, c){
             if (c === 0){
-                var salt = genSalt();
-                console.log(salt);
-                var passwordHash = hash(req.param('password'),salt);
-                console.log(passwordHash);
-                var userToCreate = {
-                    '_id': req.param('username'),
-                    'user': {'first': req.param('firstName'), 'last': req.param('lastName')},
-                    'salt': salt,
-                    'hash': passwordHash
-                };
-                console.log(userToCreate);
-
-                user.create(userToCreate, function(err, createdUser){
-                    if(err){
-                        console.log('Error creating user!');
-                        throw err;
-                    }
-                    res.redirect('/user/'+createdUser._id);
-                });
-
+                createUser(req,res);
+            } else {
+                console.log('Invalid session!');
+                res.redirect('/');
             }
+
         });
     }
-
 };
 
-/*exports.posts = function(req, res){
-    posts.findOne({'_id':req.params.id}).select('-postPreview').exec(function(err, postToView){
-        console.log(postToView);
-        res.render('posts',postToView);
-    });
-};*/
 
-/*exports.createPosts = function(req, res){
-    console.log(req.session.isLoggedIn);
-    if(req.session.isLoggedIn) {
-        res.render('createPosts', {title: 'Create a posts'})
-    } else {
-        console.log('Not logged in! Create post form disallowed!');
-        res.redirect('/');
-    }
-};*/
-
-/*exports.savePosts = function(req, res, next){
-
-    console.log(req.param('slug'));
-    console.log(req.body);
-
-    var postToCreate = {
-        _id: req.param('slug'),
-        title: req.param('title'),
-        author: req.param('author'),
-        postPreview: req.param('preview'),
-        postText: req.param('post'),
-        tags: req.param('tags')
+var createUser = function(req, res){
+    var salt = genSalt();
+    console.log(salt);
+    var passwordHash = hash(req.param('password'),salt);
+    console.log(passwordHash);
+    var userToCreate = {
+        '_id': req.param('username'),
+        'user': {'first': req.param('firstName'), 'last': req.param('lastName')},
+        'salt': salt,
+        'hash': passwordHash
     };
+    console.log(userToCreate);
 
-    posts.create(postToCreate, function(err, createdPost){
+    user.create(userToCreate, function(err, createdUser){
         if(err){
-            console.log('Error creating post!');
+            console.log('Error creating user!');
             throw err;
         }
-        res.redirect('/posts/'+createdPost._id);
+        res.redirect('/user/'+createdUser._id);
     });
-};*/
-
+};
 
 var hash = function(pass, salt) {
     var hash = crypto.createHash('sha512');
