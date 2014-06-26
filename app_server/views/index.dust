@@ -5,7 +5,7 @@
             {#postPreviews}
                 <div class="story">
                     <h3>{title}</h3>
-                    <h5><em>posted on {creationDate}</em></h5>
+                    <h5><em>posted on {humanDate}</em></h5>
                     <p>{postPreview} <a href="/posts/{_id}"><em>read more...</em></a></p>
                 </div>
             {/postPreviews}

@@ -39,7 +39,7 @@ require('./routes')(app);
 mongoose.connect('mongodb://localhost/meanBlog', function(err){
 
     if(err){
-        console.log('Error connecting to MongoD!!!');
+        console.log('Error connecting to MongoDB!!!');
         throw(err);
     }
 

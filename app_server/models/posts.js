@@ -15,6 +15,10 @@ var schema = mongoose.Schema({
     tags: {type: [String]}
 });
 
-
+// properties that do not get saved to the db
+schema.virtual('humanDate').get(function () {
+    return (this.creationDate.getMonth()+1) + '/' + this.creationDate.getDate() + '/' + this.creationDate.getFullYear()
+        + " " + this.creationDate.getHours() + ":" + this.creationDate.getMinutes();
+});
 
 var Posts = mongoose.model('Posts', schema);

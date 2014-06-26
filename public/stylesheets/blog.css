@@ -1,7 +1,7 @@
 #title {
 	font-family: 'Bilbo Swash Caps', cursive;
-	text-align: center;
-  font-size:55px;
+    text-align: center;
+    font-size:55px;
 }
 
 #loginForm {
@@ -150,14 +150,15 @@
 
 .story > h3 {
 	font-family: 'Bilbo Swash Caps', cursive;
-	padding-left: 1em;
-	padding-top: 1em;
-	
+    padding-left: 0.1em;
+    font-size: 1.8em;
+    margin: 0;
 }
 
 .story > h5 {
-	font-family: 'Bilbo Swash Caps', cursive;
-	padding-left: 1em;
+	font-family: 'Varela Round', cursive;
+    font-size: 0.83em;
+    margin: 0;
 }
 
 
