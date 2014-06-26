@@ -47,8 +47,14 @@ exports.createUser = function(req, res){
     if(req.session.isLoggedIn) {
         res.render('createUsers', {title: 'Create a user'})
     } else {
-        console.log('No logged in! Create User!');
-        res.redirect('/');
+        user.count({}, function(err, c) {
+            if (c === 0) {
+                res.render('createUsers', {title: 'Create a user'});
+            } else {
+                console.log('No logged in! Create User!');
+                res.redirect('/');
+            }
+        });
     }
 };
 
