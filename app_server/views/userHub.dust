@@ -1,0 +1,14 @@
+{>"mainLayout"/}
+{<mainBody}
+    <section id="userHub">
+        <h2>Username: {_id}</h2>
+        <h4>{name.first}</h4>
+        <div class="postList">
+            {#postLinks}
+                <div class="postLink">
+                    <a href="/posts/{_id}">{title}</a>
+                </div>
+            {/postLinks}
+        </div>
+    </section>
+{/mainBody}

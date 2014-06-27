@@ -8,13 +8,13 @@ var posts = mongoose.model('Posts');
 
 exports.posts = function(req, res){
     posts.findOne({'_id':req.params.id}).select('-postPreview').exec(function(err, postToView){
-        console.log(postToView);
+        //console.log(postToView);
         res.render('posts',postToView);
     });
 };
 
 exports.createPosts = function(req, res){
-    console.log(req.session.isLoggedIn);
+    //console.log(req.session.isLoggedIn);
     if(req.session.isLoggedIn) {
         res.render('createPosts', {title: 'Create a posts'})
     } else {

@@ -78,12 +78,13 @@ exports.saveUser = function(req, res, next){
 
 var createUser = function(req, res){
     var salt = genSalt();
-    console.log(salt);
+    //console.log(salt);
     var passwordHash = hash(req.param('password'),salt);
-    console.log(passwordHash);
+    //console.log(passwordHash);
+    console.log(req.param);
     var userToCreate = {
         '_id': req.param('username'),
-        'user': {'first': req.param('firstName'), 'last': req.param('lastName')},
+        'name': {'first': req.param('firstName'), 'last': req.param('lastName')},
         'salt': salt,
         'hash': passwordHash
     };
@@ -91,12 +92,23 @@ var createUser = function(req, res){
 
     user.create(userToCreate, function(err, createdUser){
         if(err){
-            console.log('Error creating user!');
+            //console.log('Error creating user!');
             throw err;
         }
         res.redirect('/user/'+createdUser._id);
     });
 };
+
+
+
+exports.viewUser = function(req, res){
+    var userName = req.params.username;
+    user.findOne({'_id':userName}).exec(function(err,userToView){
+        console.log(userToView);
+        res.render('userHub',userToView);
+    });
+};
+
 
 var hash = function(pass, salt) {
     var hash = crypto.createHash('sha512');
