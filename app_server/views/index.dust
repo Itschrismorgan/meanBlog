@@ -14,7 +14,7 @@
             <div id="aboutme">
                 <p>We are family from Lexington, KY. We have moved to Equador to have a family adventure!</p>
             </div>
-            <div id="tagcloud">
+            <!-- <div id="tagcloud">
                 <p>Trip</p>
                 <p>Photos</p>
                 <p>Kids</p>
@@ -23,7 +23,7 @@
             </div>
             <div id="chrono-index">
                 Archive Tree
-            </div>
+            </div> -->
         </section>
     </section>
 {/mainBody}

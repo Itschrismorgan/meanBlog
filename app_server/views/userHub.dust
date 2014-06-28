@@ -2,7 +2,7 @@
 {<mainBody}
     <section id="userHub">
         <h2>Username: {_id}</h2>
-        <h4>{name.first}</h4>
+        <h4>Name: {fullname}</h4>
         <div class="postList">
             {#postLinks}
                 <div class="postLink">
@@ -11,4 +11,5 @@
             {/postLinks}
         </div>
     </section>
+    <a href="/user/logout">Logout</a>
 {/mainBody}

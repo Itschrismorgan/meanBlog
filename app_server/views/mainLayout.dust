@@ -19,6 +19,6 @@
 {+mainBody}
 
 {/mainBody}
-    <footer>Morgans on the Equator is a blog for the Morgan family. &copy; 2014</footer>
+    <footer>Morgans on the Equator is a blog for the Morgan family. &copy; <script>document.write(new Date().getFullYear())</script></footer>
 </body>
 </html>
