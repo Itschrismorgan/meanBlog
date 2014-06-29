@@ -25,6 +25,7 @@
 
 #mainBody {
     width:80%;
+    margin: 0 auto;
 }
 
 #headerDiv {
@@ -76,8 +77,10 @@
   }
   
   #digest {
-    float:left;
-    width:80%;
+      margin-top: 3em;
+      margin-left: auto;
+      margin-right: auto;
+      width:100%;
   }
 }
 
@@ -115,7 +118,9 @@
   }
   
   #digest {
-    float:left;
+    margin-top: 3em;
+    margin-left: auto;
+    margin-right: auto;
     width:100%;
   }
 }
@@ -143,14 +148,17 @@
 }
 
 #mainStory > h2{
-	font-family: 'Bilbo Swash Caps', cursive;
-  font-size:35px;
+    font-family: 'Bilbo', cursive;
+    font-size:35px;
 }
 
 #mainStory > h6{
 	font-family: 'Cherry Swash', cursive;
 }
 
+.innerStory {
+    margin: 0.4em;
+}
 
 @media screen and (min-width: 800px) {
   .story {
@@ -181,26 +189,29 @@
 }
 
 
-.story > h3 {
-	font-family: 'Bilbo Swash Caps', cursive;
+.innerStory > h3 {
+	font-family: 'Bilbo', cursive;
     padding-left: 0.1em;
-    font-size: 1.8em;
+    font-size: 1.4em;
     margin: 0;
+    font-weight: bold;
 }
 
-.story > h5 {
+.innerStory > h5 {
 	font-family: 'Varela Round', cursive;
-    font-size: 0.83em;
+    font-size: 0.6em;
     margin: 0;
 }
 
 
-.story > p {
+.innerStory > p {
   font-family: 'Varela Round', sans-serif;
-  padding: 1em;
+  padding: 0.1em;
 }
 
 footer {
+  margin-top: 4em;
+  font-size: 10pt;
   clear:both;
   width:80%;
   margin:0 auto;

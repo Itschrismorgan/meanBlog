@@ -4,26 +4,14 @@
         <section id="digest">
             {#postPreviews}
                 <div class="story">
-                    <h3>{title}</h3>
-                    <h5><em>posted on {humanDate}</em></h5>
-                    <p>{postPreview} <a href="/posts/{_id}"><em>read more...</em></a></p>
+                    <div class="innerStory">
+                        <h3>{title}</h3>
+                        <h5><em>posted on {humanDate}</em></h5>
+                        <p>{postPreview|s} <a href="/posts/{_id}"><em>read more...</em></a></p>
+
+                    </div>
                 </div>
             {/postPreviews}
-        </section>
-        <section id="rightInfo">
-            <div id="aboutme">
-                <p>We are family from Lexington, KY. We have moved to Equador to have a family adventure!</p>
-            </div>
-            <!-- <div id="tagcloud">
-                <p>Trip</p>
-                <p>Photos</p>
-                <p>Kids</p>
-                <p>Locals</p>
-                <p>Expat</p>
-            </div>
-            <div id="chrono-index">
-                Archive Tree
-            </div> -->
         </section>
     </section>
 {/mainBody}
