@@ -11,6 +11,8 @@ var mongoose = require('mongoose');
 
 var app = express();
 
+http.globalAgent.maxSockets = Infinity;
+
 app.engine('dust',dustjs.dust({}));
 
 // all environments
