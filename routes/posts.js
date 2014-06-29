@@ -8,5 +8,7 @@ var ctrl = require('../app_server/controllers/posts.js');
 module.exports = function(app){
     app.get('/posts/create', ctrl.createPosts);
     app.post('/posts/create', ctrl.savePosts);
+    app.get('/posts/edit/:id',ctrl.editPosts);
+    app.post('/posts/edit',ctrl.updatePosts);
     app.get('/posts/:id', ctrl.posts);
 };

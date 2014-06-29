@@ -13,8 +13,34 @@ exports.posts = function(req, res){
     });
 };
 
+exports.editPosts = function(req, res){
+    if(req.session.isLoggedIn){
+        posts.findOne({'_id':req.params.id},function(err, postToEdit){
+            console.log(postToEdit);
+            res.render('editPosts',postToEdit);
+        });
+    } else {
+        res.redirect('/');
+    }
+};
+
+exports.updatePosts = function(req, res, next){
+    if(req.session.isLoggedIn){
+        posts.findOne({'_id':req.param('slug')},function(err, postToUpdate){
+            postToUpdate.title = req.param('title');
+            postToUpdate.author = req.param('author');
+            postToUpdate.postPreview = req.param('preview');
+            postToUpdate.postText = req.param('post');
+            postToUpdate.tags = req.param('tags');
+            postToUpdate.save();
+            res.redirect('/posts/'+req.param('slug'));
+        });
+    } else {
+        res.redirect('/');
+    }
+};
+
 exports.createPosts = function(req, res){
-    //console.log(req.session.isLoggedIn);
     if(req.session.isLoggedIn) {
         res.render('createPosts', {title: 'Create a posts'})
     } else {
@@ -24,10 +50,6 @@ exports.createPosts = function(req, res){
 };
 
 exports.savePosts = function(req, res, next){
-
-    console.log(req.param('slug'));
-    console.log(req.body);
-
     if(req.session.isLoggedIn){
         var postToCreate = {
             _id: req.param('slug'),
