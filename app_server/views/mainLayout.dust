@@ -6,16 +6,18 @@
     <link href="/stylesheets/blog.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
-    <header>
-        <h1 id="title">Morgans on the Equator</h1>
-        <nav id="mainNav">
-            <ul class="topMenu">
-                <li><a href="/">blog</a></li>
-                <li><a href="/about">about</a></li>
-                <li><a href="/photos">photos</a></li>
-            </ul>
-        </nav>
-    </header>
+    <div id="headerDiv">
+        <header>
+            <h1 id="title">Morgans on the Equator</h1>
+            <nav id="mainNav">
+                <ul class="topMenu">
+                    <li><a class="menuLink" href="/">blog</a></li>
+                    <li><a class="menuLink" href="/about">about</a></li>
+                    <li><a class="menuLink" href="/photos">photos</a></li>
+                </ul>
+            </nav>
+        </header>
+    </div>
 {+mainBody}
 
 {/mainBody}

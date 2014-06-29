@@ -1,7 +1,40 @@
 #title {
 	font-family: 'Bilbo Swash Caps', cursive;
     text-align: center;
-    font-size:55px;
+    font-size: 3.5em;
+    margin-bottom: 0.4em;
+    padding-top: 2em;
+}
+
+.menuLink:link {
+    text-decoration: none;
+    color: black;
+}
+.menuLink:visited {
+    text-decoration: none;
+    color: black;
+}
+.menuLink:hover {
+    font-weight: bold;
+}
+
+#aboutUs {
+    margin: 0 auto;
+    width: 80%;
+}
+
+#mainBody {
+    width:80%;
+}
+
+#headerDiv {
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    height: 300px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url('/images/banner.jpg');
 }
 
 #loginForm {
