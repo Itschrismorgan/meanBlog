@@ -1,10 +1,15 @@
 {>"mainLayout"/}
 {<mainBody}
     <section id="photoStream">
+        <div style="width:100%">
+            <p style="text-align: center; margin-top: 2em; font-size: 5em">
+                Photos coming soon!
+            </p>
+        </div>
         {#photos}
-            <div class="photos" >
+            <!-- <div class="photos" >
                 <img src="{photoUrl}"/>
-            </div>
+            </div> -->
         {/photos}
     </section>
 {/mainBody}

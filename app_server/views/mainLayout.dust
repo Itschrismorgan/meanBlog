@@ -21,6 +21,8 @@
 {+mainBody}
 
 {/mainBody}
-    <footer>Morgans on the Equator is a blog for the Morgan family. &copy; <script>document.write(new Date().getFullYear())</script></footer>
+    <footer>Morgans on the Equator is a blog for the Morgan family. &copy; <script>document.write(new Date().getFullYear())</script><br/>
+    <span id="bannerCredit">Banner photo by <a href="http://www.lizthomasphotography.com/">Liz Thomas Photography</a></span>
+    </footer>
 </body>
 </html>

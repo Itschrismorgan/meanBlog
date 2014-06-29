@@ -23,6 +23,32 @@
     width: 80%;
 }
 
+#aboutUs > h2 {
+    font-family: 'Bilbo', cursive;
+    font-size: 2em;
+}
+
+.aboutPic {
+    margin: 0 auto;
+}
+
+.aboutPic > img {
+    display:block;
+    margin: 0 auto;
+}
+
+.photoCredit {
+    font-family: 'Cherry Swash', cursive;
+    text-align: center;
+    font-size: 0.6em;
+}
+
+#bannerCredit {
+    font-family: 'Cherry Swash', cursive;
+    text-align: center;
+    font-size: 0.8em;
+}
+
 #mainBody {
     width:80%;
     margin: 0 auto;
@@ -188,6 +214,14 @@
   }
 }
 
+.photos > img {
+    width:100%;
+}
+
+#photoStream {
+    margin: 1em auto;
+    width: 80%;
+}
 
 .innerStory > h3 {
 	font-family: 'Bilbo', cursive;
@@ -205,15 +239,17 @@
 
 
 .innerStory > p {
-  font-family: 'Varela Round', sans-serif;
-  padding: 0.1em;
+    font-family: 'Varela Round', sans-serif;
+    padding: 0.1em;
 }
 
 footer {
-  margin-top: 4em;
-  font-size: 10pt;
-  clear:both;
-  width:80%;
-  margin:0 auto;
-  text-align: center;
+    font-family: 'Cherry Swash', cursive;
+    margin-top: 4em;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 10pt;
+    clear:both;
+    width:80%;
+    text-align: center;
 }
