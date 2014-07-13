@@ -28,6 +28,11 @@
     font-weight: bold;
 }
 
+#userHub {
+    margin: 0 auto;
+    width: 80%;
+}
+
 #aboutUs {
     margin: 0 auto;
     width: 80%;

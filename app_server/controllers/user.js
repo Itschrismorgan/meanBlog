@@ -110,11 +110,14 @@ exports.getUserObject = function(req){
 exports.viewUser = function(req, res){
     var userName = req.params.username;
     user.findOne({'_id':userName}).exec(function(err,userToView){
-        Posts.find().sort('creationDate').select('-postText').limit(10).exec(function(err, previews){
-            //console.log(previews);
-            var postPreviews = {'postPreviews': previews};
-            //console.log(userToView);
-            res.render('userHub',userToView);
+        posts.find().sort('creationDate').select('_id title humanDate creationDate').limit(10).exec(function(err, postList){
+            console.log(postList);
+            console.log(userToView);
+            var userHub = {
+                'postList': postList,
+                'userInfo': userToView
+            };
+            res.render('userHub',userHub);
         });
     });
 };
