@@ -5,6 +5,7 @@
 var mongoose = require('mongoose');
 var crypto = require('crypto');
 var user = mongoose.model('User');
+var posts = mongoose.model('Posts')
 
 
 exports.login = function(req, res){
@@ -99,13 +100,22 @@ var createUser = function(req, res){
     });
 };
 
-
+exports.getUserObject = function(req){
+    var userObj = {};
+    userObj.isLoggedIn = req.session.isLoggedIn;
+    //console.log(req.session);
+    return userObj;
+};
 
 exports.viewUser = function(req, res){
     var userName = req.params.username;
     user.findOne({'_id':userName}).exec(function(err,userToView){
-        console.log(userToView);
-        res.render('userHub',userToView);
+        Posts.find().sort('creationDate').select('-postText').limit(10).exec(function(err, previews){
+            //console.log(previews);
+            var postPreviews = {'postPreviews': previews};
+            //console.log(userToView);
+            res.render('userHub',userToView);
+        });
     });
 };
 

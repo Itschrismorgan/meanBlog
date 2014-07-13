@@ -3,6 +3,9 @@
     <section id="userHub">
         <h2>Username: {_id}</h2>
         <h4>Name: {fullname}</h4>
+        <div>
+            <a href="/posts/create">Create Post</a>
+        </div>
         <div class="postList">
             {#postLinks}
                 <div class="postLink">

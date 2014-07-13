@@ -4,19 +4,27 @@
 
 var mongoose = require('mongoose');
 var posts = mongoose.model('Posts');
+var userCtrl = require('./user');
+
 
 
 exports.posts = function(req, res){
     posts.findOne({'_id':req.params.id}).select('-postPreview').exec(function(err, postToView){
-        //console.log(postToView);
-        res.render('posts',postToView);
+        var sessionObj  = userCtrl.getUserObject(req);
+        postToView.session = sessionObj;
+        var dustObj = {};
+        dustObj.session = sessionObj;
+        //console.log(dustObj);
+        dustObj.post = postToView;
+        //console.log(dustObj);
+        res.render('posts',dustObj);
     });
 };
 
 exports.editPosts = function(req, res){
     if(req.session.isLoggedIn){
         posts.findOne({'_id':req.params.id},function(err, postToEdit){
-            console.log(postToEdit);
+            //console.log(postToEdit);
             res.render('editPosts',postToEdit);
         });
     } else {

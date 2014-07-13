@@ -8,7 +8,7 @@
             <p><em>“It’s a dangerous business, Frodo, going out of your door,” he used to say.  “You step into the Road, and if you don’t keep your feet, there is no telling where you might be swept off to.”</em> --  The Fellowship of the Ring, JRR Tolkien</p>
             <p>(Yes, we are family of geeks, but most of you knew that already!)</p>
             <div class="aboutPic">
-                <img src="/images/about1.jpg">
+                <img class="responsiveImage" style="max-width: 469px" src="/images/about1.jpg">
                 <p class="photoCredit">photo by <a href="http://www.ninaandwes.com">Nina & Wes Photography</a></p>
             </div>
         </div>
