@@ -38,6 +38,11 @@
     width: 80%;
 }
 
+.basicContainer {
+    margin: 0 auto;
+    width: 80%;
+}
+
 #aboutUs > h2 {
     font-family: 'Bilbo', cursive;
     font-size: 2em;

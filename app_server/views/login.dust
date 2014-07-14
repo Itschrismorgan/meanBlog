@@ -1,6 +1,6 @@
 {>"mainLayout"/}
 {<mainBody}
-    <section id="loginForm">
+    <section id="loginForm" class="basicContainer">
         <form method="post" action="/user/login">
             <ul>
                 <li>

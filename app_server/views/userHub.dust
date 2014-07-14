@@ -1,6 +1,6 @@
 {>"mainLayout"/}
 {<mainBody}
-    <section id="userHub">
+    <section id="userHub" class="basicContainer">
         <h2>Username: {userInfo._id}</h2>
         <h4>Name: {userInfo.fullname}</h4>
         <div>
@@ -9,7 +9,7 @@
         <div class="postList">
             {#postList}
                 <div class="postLink">
-                    <a href="/posts/edit/{_id}">Edit</a>: <a href="/posts/{_id}">{title}</a>
+                    <a href="/posts/edit/{_id}">Edit</a>: <a href="/posts/{_id}">{title}</a> ({humanDate})
                 </div>
             {/postList}
         </div>

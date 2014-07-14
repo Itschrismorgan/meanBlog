@@ -1,5 +1,6 @@
 {>"mainLayout"/}
 {<mainBody}
+<div class="basicContainer">
     <h1>Edit a post for the blog!</h1>
     <form method="post" action="/posts/edit">
         <ul>
@@ -32,4 +33,5 @@
             </li>
         </ul>
     </form>
+</div>
 {/mainBody}

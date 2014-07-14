@@ -1,6 +1,6 @@
 {>"mainLayout"/}
 {<mainBody}
-    <section id="aboutUs">
+    <section id="aboutUs" class="basicContainer">
         <h2>About Morgans on the Equator</h2>
         <div>
             <p>Bienvenidos! Welcome!</p>
