@@ -1,28 +1,32 @@
 {>"mainLayout"/}
 {<mainBody}
 <div class="basicContainer">
+    <script src="/extlibs/ckeditor/ckeditor.js"></script>
     <h1>Edit a post for the blog!</h1>
     <form method="post" action="/posts/edit">
         <ul>
             <li>
                 <label for="slug">SLUG</label>
-                <input id="slug" name="slug" value="{_id}" readonly>
+                <input class="inputFields" name="slug" value="{_id}" readonly>
             </li>
             <li>
                 <label for="title">Title</label>
-                <input id="title" name="title" value="{title}">
+                <input class="inputFields" name="title" value="{title}">
             </li>
             <li>
                 <label for="author">Author</label>
-                <input id="author" name="author" value="{author}">
+                <input class="inputFields" name="author" value="{author}">
             </li>
             <li>
                 <label for="preview">Preview</label>
-                <textarea rows="50" cols="50" id="preview" name="preview">{postPreview}</textarea>
+                <textarea rows="15" cols="35" id="preview" name="preview">{postPreview}</textarea>
             </li>
             <li>
                 <label for="post">Post</label>
-                <textarea rows="50" cols="50" id="post" name="post">{postText}</textarea>
+                <textarea rows="50" cols="35" id="postEditor" name="post">{postText}</textarea>
+                <script>
+                    CKEDITOR.replace( 'postEditor' );
+                </script>
             </li>
             <li>
                 <label for="tags">Tags</label>

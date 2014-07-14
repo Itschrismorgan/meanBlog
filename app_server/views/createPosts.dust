@@ -19,7 +19,7 @@
             </li>
             <li>
                 <label for="preview">Preview</label><br/>
-                <textarea rows="50" cols="35" id="preview" name="preview">Enter preview here....</textarea>
+                <textarea rows="15" cols="35" id="preview" name="preview">Enter preview here....</textarea>
             </li>
             <li>
                 <label for="post">Post</label><br/>

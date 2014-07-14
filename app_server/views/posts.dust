@@ -5,7 +5,7 @@
         {@eq key=session.isLoggedIn value="true"}
             <a href="/posts/edit/{post._id}">edit</a>
         {/eq}
-        <h4>Posted by {post.author} on {post.creationDate}</h4>
+        <h4>Posted by {post.author} on {post.humanDate}</h4>
             <div class="blogPost">
                 {post.postText|s}
             </div>
