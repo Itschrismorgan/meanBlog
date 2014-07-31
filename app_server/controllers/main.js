@@ -6,7 +6,7 @@ var Posts = mongoose.model('Posts');
 
 
 exports.index = function(req, res){
-    Posts.find().sort('creationDate').select('-postText').limit(10).exec(function(err, previews){
+    Posts.find().sort('-creationDate').select('-postText').limit(10).exec(function(err, previews){
         //console.log(previews);
         var postPreviews = {'postPreviews': previews};
         res.render('index',postPreviews);

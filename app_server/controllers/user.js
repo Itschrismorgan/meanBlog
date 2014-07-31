@@ -24,17 +24,24 @@ exports.authUser = function(req, res, next){
     var username = req.param('username');
     var pass = req.param('password');
     if (!(username && pass)) {
-        return failedLogin();
+        res.redirect('/');
+        //return failedLogin();
     }
 
     user.findById(username, function(err, user){
         if (err) return next(err);
 
         // No user found in DB
-        if (!user) { return failedLogin();}
+        if (!user) {
+            res.redirect('/');
+            //return failedLogin();
+        }
 
         // check password
-        if (user.hash != hash(pass,user.salt)){return failedLogin();}
+        if (user.hash != hash(pass,user.salt)){
+            res.redirect('/');
+            //return failedLogin();
+        }
 
         req.session.isLoggedIn = true;
         req.session.user = username;
