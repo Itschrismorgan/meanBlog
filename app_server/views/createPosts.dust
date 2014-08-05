@@ -1,7 +1,9 @@
 {>"mainLayout"/}
 {<mainBody}
 <div class="basicContainer">
+    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="/extlibs/ckeditor/ckeditor.js"></script>
+    <script src="/extlibs/ckeditor/adapters/jquery.js"></script>
     <h1>Create a post for the blog!</h1>
     <form method="post" action="/posts/create">
         <ul>
