@@ -89,14 +89,14 @@ var createUser = function(req, res){
     //console.log(salt);
     var passwordHash = hash(req.param('password'),salt);
     //console.log(passwordHash);
-    console.log(req.param);
+    //console.log(req.param);
     var userToCreate = {
         '_id': req.param('username'),
         'name': {'first': req.param('firstName'), 'last': req.param('lastName')},
         'salt': salt,
         'hash': passwordHash
     };
-    console.log(userToCreate);
+    //console.log(userToCreate);
 
     user.create(userToCreate, function(err, createdUser){
         if(err){
@@ -118,8 +118,8 @@ exports.viewUser = function(req, res){
     var userName = req.params.username;
     user.findOne({'_id':userName}).exec(function(err,userToView){
         posts.find().sort('creationDate').select('_id title creationDate').limit(10).exec(function(err, postList){
-            console.log(postList);
-            console.log(userToView);
+            //console.log(postList);
+            //console.log(userToView);
             var userHub = {
                 'postList': postList,
                 'userInfo': userToView
