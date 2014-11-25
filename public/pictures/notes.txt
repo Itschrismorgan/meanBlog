@@ -1,0 +1,1 @@
+this directory contains image files that are used in the post. The files will not be added to the Git repository.
