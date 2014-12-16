@@ -170,3 +170,16 @@
 #mainStory > h6{
     font-family: 'Cherry Swash', cursive;
 }
+
+
+
+footer {
+    font-family: 'Cherry Swash', cursive;
+    margin-top: 4em;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 10pt;
+    clear:both;
+    width:80%;
+    text-align: center;
+}
