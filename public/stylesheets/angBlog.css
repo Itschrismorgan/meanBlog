@@ -143,3 +143,30 @@
     font-family: 'Varela Round', sans-serif;
     padding: 0.1em;
 }
+
+
+#mainStory {
+    margin: 0 auto;
+}
+@media screen and (min-width: 800px) {
+    #mainStory {
+        width: 60%;
+    }
+}
+@media screen and (min-width: 350px) and (max-width: 800px) {
+    #mainStory {
+        width: 80%;
+    }
+}
+@media screen and (max-width: 350px) {
+    #mainStory {
+        width: 95%;
+    }
+}
+#mainStory > h2{
+    font-family: 'Bilbo', cursive;
+    font-size:35px;
+}
+#mainStory > h6{
+    font-family: 'Cherry Swash', cursive;
+}

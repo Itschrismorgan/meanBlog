@@ -24,6 +24,17 @@ blog.service('postService', ['$http','$q', function($http, $q){
                 return e.message;
             });
     };
+
+    this.getPost = function(id){
+        console.log('making call for post: '+id);
+        return $http.get(postUrl+"/"+id)
+            .success(function(data){
+                return data;
+            })
+            .error(function(e){
+                return e.message;
+            });
+    }
 }]);
 
 blog.controller('IndexCtrl',['$scope','postService',function($scope, postService){
@@ -35,8 +46,16 @@ blog.controller('IndexCtrl',['$scope','postService',function($scope, postService
             }, function(error){
                 console.log(error);
             });
+}]);
 
-
+blog.controller('PostCtrl',['$scope', '$routeParams','postService', function($scope, $routeParams, postService){
+    console.log($routeParams);
+    postService.getPost($routeParams._id)
+        .then(function(post){
+            $scope.post = post.data;
+        }, function(error){
+            console.log(error);
+        });
 }]);
 
 
@@ -48,6 +67,10 @@ blog.config(function($routeProvider) {
         }).
         when('/about',{
             templateUrl: 'views/about_partial.html'
+        }).
+        when('/post/:_id',{
+            templateUrl: 'views/post_partial.html',
+            controller: 'PostCtrl'
         });
 
 });

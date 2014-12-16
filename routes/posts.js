@@ -13,5 +13,6 @@ module.exports = function(app){
     app.post('/posts/edit',ctrl.updatePosts);
     app.get('/posts/:id', ctrl.posts);
 
-    app.get('/api/posts',apiCtrl.posts)
+    app.get('/api/posts',apiCtrl.posts);
+    app.get('/api/posts/:id', apiCtrl.post);
 };
