@@ -9,8 +9,17 @@ var userCtrl = require('./user');
 
 
 exports.posts = function(req, res){
-    posts.find().sort('-creationDate').select('-postText').limit(10).exec(function(err, previews){
-        res.set('Content-Type','application/json');
-        res.send(previews);
-    });
+    if(req.query['index'] && req.query['count']){
+        posts.find().sort('-creationDate').select('-postText').skip(req.query['index']).limit(req.query['count']).exec(function(err, previews){
+            res.set('Content-Type','application/json');
+            res.send(previews);
+        });
+
+    } else {
+        posts.find().sort('-creationDate').select('-postText').limit(10).exec(function(err, previews){
+            res.set('Content-Type','application/json');
+            res.send(previews);
+        });
+
+    }
 };

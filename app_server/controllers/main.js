@@ -6,17 +6,9 @@ var Posts = mongoose.model('Posts');
 
 
 exports.index = function(req, res){
-    Posts.find().sort('-creationDate').select('-postText').limit(10).exec(function(err, previews){
-        //console.log(previews);
-        var postPreviews = {'postPreviews': previews};
-        res.render('index',postPreviews);
-    });
+    res.render('layout');
 };
 
 exports.about = function(req, res){
     res.render('about', {title: 'About us' });
 };
-
-exports.angularBoot = function(req, res){
-    res.render('angular');
-}
