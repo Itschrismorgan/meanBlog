@@ -45,6 +45,9 @@ blog.config(function($routeProvider) {
         when('/', {
             templateUrl: 'views/home.html',
             controller: 'IndexCtrl'
+        }).
+        when('/about',{
+            templateUrl: 'views/about_partial.html'
         });
 
 });
