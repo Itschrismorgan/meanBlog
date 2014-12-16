@@ -4,6 +4,7 @@
 /* Posts routes */
 
 var ctrl = require('../app_server/controllers/posts.js');
+var apiCtrl = require('../app_server/controllers/apiPosts.js');
 
 module.exports = function(app){
     app.get('/posts/create', ctrl.createPosts);
@@ -11,4 +12,6 @@ module.exports = function(app){
     app.get('/posts/edit/:id',ctrl.editPosts);
     app.post('/posts/edit',ctrl.updatePosts);
     app.get('/posts/:id', ctrl.posts);
+
+    app.get('/api/posts',apiCtrl.posts)
 };

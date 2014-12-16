@@ -16,3 +16,7 @@ exports.index = function(req, res){
 exports.about = function(req, res){
     res.render('about', {title: 'About us' });
 };
+
+exports.angularBoot = function(req, res){
+    res.render('angular');
+}
