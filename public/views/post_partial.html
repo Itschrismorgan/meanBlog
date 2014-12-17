@@ -1,7 +1,7 @@
 <section id="mainStory">
     <h2>{{post.title}}</h2>
     <a href="/posts/edit/{{post._id}}">edit</a>
-    <h4>Posted by {{post.author}} on {{post.creationDate}}</h4>
+    <h4>Posted by {{post.author}} on {{post.creationDate|date}}</h4>
     <div class="blogPost" ng-bind-html="post.postText">
     </div>
 </section>
