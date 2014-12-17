@@ -77,6 +77,9 @@ blog.config(function($routeProvider) {
             templateUrl: 'views/post_partial.html',
             controller: 'PostCtrl'
         }).
+        when('/photos',{
+            templateUrl: 'views/photos_partial.html',
+        }).
         otherwise('/');
 
 });
