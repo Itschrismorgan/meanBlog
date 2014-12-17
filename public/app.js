@@ -7,12 +7,13 @@ var blog = angular.module('blog',['ngRoute']);
 
 
 
-blog.controller('MainCtrl',['$scope',function($scope){
+blog.controller('MainCtrl',['$scope','$rootScope', function($scope,$rootScope){
     $scope.beginIndex = 0;
     $scope.endIndex = 3;
+    $rootScope.currentYear = new Date().getFullYear();
 }]);
 
-blog.service('postService', ['$http','$q', function($http, $q){
+blog.service('postService', ['$http', function($http){
     var postUrl = '/api/posts';
 
     this.getPreviews = function(beginIndex,endIndex){
@@ -37,21 +38,25 @@ blog.service('postService', ['$http','$q', function($http, $q){
     }
 }]);
 
-blog.controller('IndexCtrl',['$scope','postService',function($scope, postService){
+blog.controller('IndexCtrl',['$scope', '$sce','postService',function($scope, $sce, postService){
 
     //console.log($scope.beginIndex);
     postService.getPreviews($scope.beginIndex,$scope.endIndex)
         .then(function(posts){
+                for(var x=0;x<posts.length;x++){
+                    posts[x].data.preview = $sce.trustAsHtml(posts[x].data.preview);
+                }
                 $scope.posts = posts.data;
             }, function(error){
                 console.log(error);
             });
 }]);
 
-blog.controller('PostCtrl',['$scope', '$routeParams','postService', function($scope, $routeParams, postService){
+blog.controller('PostCtrl',['$scope', '$routeParams','$sce','postService', function($scope, $routeParams, $sce, postService){
     console.log($routeParams);
     postService.getPost($routeParams._id)
         .then(function(post){
+            post.data.postText = $sce.trustAsHtml(post.data.postText);
             $scope.post = post.data;
         }, function(error){
             console.log(error);
@@ -71,6 +76,7 @@ blog.config(function($routeProvider) {
         when('/post/:_id',{
             templateUrl: 'views/post_partial.html',
             controller: 'PostCtrl'
-        });
+        }).
+        otherwise('/');
 
 });

@@ -26,8 +26,6 @@ exports.posts = function(req, res){
 
 exports.post = function(req, res){
     posts.findOne({'_id':req.params.id}).select('-postPreview').exec(function(err, postToView){
-        //var sessionObj  = userCtrl.getUserObject(req);
-        //postToView.session = sessionObj;
         res.set('Content-Type', 'application/json').send(postToView);
     });
 };
