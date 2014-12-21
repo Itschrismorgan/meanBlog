@@ -1,7 +1,7 @@
 
-module.exports = function(app){
+module.exports = function(app, apiSecret){
     require('./main')(app);
-    require('./posts')(app);
+    require('./posts')(app,apiSecret);
     require('./photos')(app);
-    require('./user')(app);
+    require('./user')(app,apiSecret);
 };

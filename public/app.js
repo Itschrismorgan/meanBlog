@@ -80,6 +80,9 @@ blog.config(function($routeProvider) {
         when('/photos',{
             templateUrl: 'views/photos_partial.html',
         }).
+        when('/login',{
+            templateUrl: 'views/login_partial.html'
+        }).
         otherwise('/');
 
 });

@@ -29,3 +29,8 @@ exports.post = function(req, res){
         res.set('Content-Type', 'application/json').send(postToView);
     });
 };
+
+exports.updatePost = function(req, res){
+    console.log('check');
+    res.set('Content-Type', 'application/json').json({hello: 'world'});
+};

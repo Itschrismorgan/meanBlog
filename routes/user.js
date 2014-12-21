@@ -4,7 +4,8 @@
 
 var ctrl = require('../app_server/controllers/user.js');
 
-module.exports = function(app){
+
+module.exports = function(app, apiSecret){
     app.get('/login', ctrl.login);
     app.get('/user/login', ctrl.login);
     app.post('/user/login',ctrl.authUser);
@@ -12,4 +13,6 @@ module.exports = function(app){
     app.post('/user/create', ctrl.saveUser);
     app.get('/user/logout', ctrl.logout);
     app.get('/user/:username', ctrl.viewUser);
+
+    app.post('/authenticate', ctrl.createToken);
 };

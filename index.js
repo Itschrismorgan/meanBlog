@@ -6,10 +6,15 @@
 var express = require('express');
 var http = require('http');
 var path = require('path');
-//var dustjs = require('adaro');
 var mongoose = require('mongoose');
 var swig = require('swig');
 var app = express();
+var expressJwt = require('express-jwt');
+var jwt = require('jsonwebtoken');
+
+var jwtSecret = {secret: 'temp-token-secret'};
+
+var tokenSecret = require('./config/token.js');
 
 http.globalAgent.maxSockets = Infinity;
 
@@ -19,6 +24,8 @@ app.engine('html',swig.renderFile);
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'app_server/views'));
 app.set('view engine', 'html');
+
+//app.use('/api', expressJwt({secret: 'temp-token-secret'}));
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.json());
@@ -37,7 +44,7 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 require('./app_server/models');
-require('./routes')(app);
+require('./routes')(app, jwtSecret);
 
 
 

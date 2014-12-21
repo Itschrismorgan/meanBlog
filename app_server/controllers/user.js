@@ -5,8 +5,9 @@
 var mongoose = require('mongoose');
 var crypto = require('crypto');
 var user = mongoose.model('User');
-var posts = mongoose.model('Posts')
-
+var posts = mongoose.model('Posts');
+var jwt = require('jsonwebtoken');
+var tokenSecret = require('../../config/token');
 
 exports.login = function(req, res){
     res.render('login');
@@ -127,6 +128,61 @@ exports.viewUser = function(req, res){
             res.render('userHub',userHub);
         });
     });
+};
+
+exports.createToken = function(req, res){
+    var username = req.param('username');
+    var pass = req.param('password');
+
+    var profile = {};
+    var expiration = {};
+
+    if (!(username && pass)) {
+        profile.name = 'guest';
+        profile.level = 'guest';
+        expiration = {expiresInMinutes: 60*60};
+
+        var token = jwt.sign(profile,tokenSecret.secret, expiration);
+
+        res.json({token: token});
+    }
+
+    user.findById(username, function(err, user){
+        if (err) return next(err);
+
+        // No user found in DB
+        if (!user) {
+            profile.name = 'guest';
+            profile.level = 'guest';
+            expiration = {expiresInMinutes: 60*60};
+
+            var token = jwt.sign(profile,tokenSecret.secret, expiration);
+
+            res.json({token: token});
+            return;
+        }
+
+        // check password
+        if (user.hash != hash(pass,user.salt)){
+            profile.name = 'guest';
+            profile.level = 'guest';
+            expiration = {expiresInMinutes: 60*60};
+
+            var token = jwt.sign(profile,tokenSecret.secret, expiration);
+
+            res.json({token: token});
+            return;
+        }
+
+        profile.name = user;
+        profile.level = 'admin';
+        expiration = {expiresInMinutes: 60*5};
+        var token = jwt.sign(profile,tokenSecret.secret, expiration);
+
+        console.log(username+" authenticated!");
+        res.json(token);  // Redirect to user hub
+    });
+
 };
 
 
