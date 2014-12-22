@@ -9,14 +9,12 @@ var path = require('path');
 var mongoose = require('mongoose');
 var swig = require('swig');
 var app = express();
-var expressJwt = require('express-jwt');
-var jwt = require('jsonwebtoken');
+//var expressJwt = require('express-jwt');
+//var jwt = require('jsonwebtoken');
 var bodyParser = require('body-parser');
 
 
-var jwtSecret = {secret: 'temp-token-secret'};
-
-var tokenSecret = require('./config/token.js');
+//var tokenSecret = require('./config/token.js');
 
 http.globalAgent.maxSockets = Infinity;
 
@@ -27,7 +25,6 @@ app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'app_server/views'));
 app.set('view engine', 'html');
 
-//app.use('/api', expressJwt({secret: 'temp-token-secret'}));
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.json());
@@ -47,7 +44,7 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 require('./app_server/models');
-require('./routes')(app, jwtSecret);
+require('./routes')(app);
 
 
 

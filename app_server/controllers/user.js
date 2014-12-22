@@ -9,48 +9,6 @@ var posts = mongoose.model('Posts');
 var jwt = require('jsonwebtoken');
 var tokenSecret = require('../../config/token');
 
-exports.login = function(req, res){
-    res.render('login');
-};
-
-exports.logout = function(req, res){
-    req.session.isLoggedIn = false;
-    res.redirect('/');
-};
-
-exports.authUser = function(req, res, next){
-    // validate input
-    //var username = cleanString(req.param('username'));
-    //var pass = cleanString(req.param('password'));
-    var username = req.param('username');
-    var pass = req.param('password');
-    if (!(username && pass)) {
-        res.redirect('/');
-        //return failedLogin();
-    }
-
-    user.findById(username, function(err, user){
-        if (err) return next(err);
-
-        // No user found in DB
-        if (!user) {
-            res.redirect('/');
-            //return failedLogin();
-        }
-
-        // check password
-        if (user.hash != hash(pass,user.salt)){
-            res.redirect('/');
-            //return failedLogin();
-        }
-
-        req.session.isLoggedIn = true;
-        req.session.user = username;
-        console.log(username+" logged in!");
-        res.redirect('/user/'+username);  // Redirect to user hub
-    });
-
-};
 
 exports.createUser = function(req, res){
     if(req.session.isLoggedIn) {
