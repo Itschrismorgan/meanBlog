@@ -11,6 +11,8 @@ var swig = require('swig');
 var app = express();
 var expressJwt = require('express-jwt');
 var jwt = require('jsonwebtoken');
+var bodyParser = require('body-parser');
+
 
 var jwtSecret = {secret: 'temp-token-secret'};
 
@@ -31,6 +33,7 @@ app.use(express.logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
+app.use(bodyParser.json());
 app.use(express.cookieParser('letsgetitstarted'));
 app.use(express.session());
 app.use(app.router);

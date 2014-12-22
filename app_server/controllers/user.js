@@ -131,8 +131,11 @@ exports.viewUser = function(req, res){
 };
 
 exports.createToken = function(req, res){
-    var username = req.param('username');
-    var pass = req.param('password');
+    //var username = req.param('username');
+    //var pass = req.param('password');
+
+    var username = req.body.username;
+    var pass = req.body.password;
 
     var profile = {};
     var expiration = {};
@@ -152,13 +155,7 @@ exports.createToken = function(req, res){
 
         // No user found in DB
         if (!user) {
-            profile.name = 'guest';
-            profile.level = 'guest';
-            expiration = {expiresInMinutes: 60*60};
-
-            var token = jwt.sign(profile,tokenSecret.secret, expiration);
-
-            res.json({token: token});
+            res.status(400).json({error: 400, message: 'no credentials provided'});
             return;
         }
 
@@ -174,13 +171,13 @@ exports.createToken = function(req, res){
             return;
         }
 
-        profile.name = user;
+        profile.name = user._id;
         profile.level = 'admin';
         expiration = {expiresInMinutes: 60*5};
         var token = jwt.sign(profile,tokenSecret.secret, expiration);
 
         console.log(username+" authenticated!");
-        res.json(token);  // Redirect to user hub
+        res.json({token: token});  // Redirect to user hub
     });
 
 };
