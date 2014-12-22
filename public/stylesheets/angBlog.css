@@ -171,6 +171,36 @@
     font-family: 'Cherry Swash', cursive;
 }
 
+.basicContainer {
+    margin: 0 auto;
+    width: 80%;
+}
+
+.loginMessage {
+    height: 50px;
+    text-align: center;
+    vertical-align: middle;
+    padding: 10px;
+}
+
+.informationalBox {
+    color: dodgerblue;
+}
+
+.successBox {
+    color: limegreen;
+}
+
+.errorBox {
+    color: red;
+}
+
+.blogForm {
+    margin-top: 30px;
+    padding: 20px;
+    border: 1px solid black;
+    text-align: center;
+}
 
 
 footer {

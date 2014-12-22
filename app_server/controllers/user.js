@@ -155,19 +155,13 @@ exports.createToken = function(req, res){
 
         // No user found in DB
         if (!user) {
-            res.status(400).json({error: 400, message: 'no credentials provided'});
+            res.status(400).json({code: 400, message: 'Unknown user'});
             return;
         }
 
         // check password
         if (user.hash != hash(pass,user.salt)){
-            profile.name = 'guest';
-            profile.level = 'guest';
-            expiration = {expiresInMinutes: 60*60};
-
-            var token = jwt.sign(profile,tokenSecret.secret, expiration);
-
-            res.json({token: token});
+            res.status(401).json({code: 401, message: 'Invalid credentials'});
             return;
         }
 

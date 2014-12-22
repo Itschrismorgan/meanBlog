@@ -38,8 +38,56 @@ blog.service('postService', ['$http', function($http){
     }
 }]);
 
-blog.controller('IndexCtrl',['$scope', '$sce','postService',function($scope, $sce, postService){
+blog.service('authServ',['$http', function($http){
+    var token = {};
 
+
+    this.authorize = function(username, password){
+        return $http.post('/authenticate',{username: username, password: password})
+            .success(function(data){
+                //console.log('client side success');
+                //console.log(data);
+                token = data;
+                return true;
+            })
+            .error(function(e){
+                //console.log('client side error');
+                //console.log(e);
+                return e;
+            });
+    }
+
+    this.getToken = function(){
+        return token;
+    }
+
+
+}]);
+
+blog.controller('LoginCtrl',['$scope','authServ', function($scope, authService){
+    $scope.loginMessage = "Please login...";
+    $scope.messageStyle = "informationalBox";
+
+    $scope.authenticate = function(){
+        authService.authorize($scope.login.username,$scope.login.password)
+            .then(function(data){
+                $scope.loginMessage = "You have succesfully logged in...";
+                $scope.messageStyle = "successBox";
+                //TODO: redirect to user page after time delay
+            },function(error){
+                if (error.data.code >= 400 && error.data.code <= 500){
+                    $scope.loginMessage = error.data.message;
+                    $scope.messageStyle = 'errorBox';
+                }
+                $scope.login.username = "";
+                $scope.login.password = "";
+            });
+    };
+
+}]);
+
+
+blog.controller('IndexCtrl',['$scope', '$sce','postService',function($scope, $sce, postService){
     //console.log($scope.beginIndex);
     postService.getPreviews($scope.beginIndex,$scope.endIndex)
         .then(function(posts){
@@ -53,7 +101,7 @@ blog.controller('IndexCtrl',['$scope', '$sce','postService',function($scope, $sc
 }]);
 
 blog.controller('PostCtrl',['$scope', '$routeParams','$sce','postService', function($scope, $routeParams, $sce, postService){
-    console.log($routeParams);
+    //console.log($routeParams);
     postService.getPost($routeParams._id)
         .then(function(post){
             post.data.postText = $sce.trustAsHtml(post.data.postText);
@@ -81,7 +129,8 @@ blog.config(function($routeProvider) {
             templateUrl: 'views/photos_partial.html',
         }).
         when('/login',{
-            templateUrl: 'views/login_partial.html'
+            templateUrl: 'views/login_partial.html',
+            controller: 'LoginCtrl'
         }).
         otherwise('/');
 
