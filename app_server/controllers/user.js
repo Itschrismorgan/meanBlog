@@ -74,17 +74,18 @@ exports.getUserObject = function(req){
 };
 
 exports.viewUser = function(req, res){
-    var userName = req.params.username;
+    //var userName = req.params.username;
+    //console.log(req.headers);
+    var token = req.headers.authorization.split(' ')[1];
+    var payload = jwt.decode(token, tokenSecret.secret);
+    var userName = payload.name;
+    //console.log(payload);
     user.findOne({'_id':userName}).exec(function(err,userToView){
-        posts.find().sort('creationDate').select('_id title creationDate').limit(10).exec(function(err, postList){
-            //console.log(postList);
-            //console.log(userToView);
-            var userHub = {
-                'postList': postList,
-                'userInfo': userToView
-            };
-            res.render('userHub',userHub);
-        });
+        var returnJson = {};
+        returnJson.username = userToView._id;
+        returnJson.name = userToView.name;
+        res.set('Content-Type','application/json');
+        res.send(returnJson);
     });
 };
 

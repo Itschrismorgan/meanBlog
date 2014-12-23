@@ -1,0 +1,13 @@
+<section id="userHub" class="basicContainer">
+    <h2>Username: {{userInfo.username}}</h2>
+    <h4>Name: {{userInfo.name.first}} {{userInfo.name.last}}</h4>
+    <div>
+        <a href="/posts/create">Create Post</a>
+    </div>
+    <div class="postList">
+        <div class="postLink" ng-repeat="post in posts">
+            <a href="/posts/edit/{{post._id}}">Edit</a>: <a href="/posts/{{post._id}}">{{post.title}}</a> ({{post.creationDate|date}})
+        </div>
+    </div>
+    <button ng-click="clearToken()">Logout</button>
+</section>

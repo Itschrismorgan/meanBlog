@@ -36,6 +36,16 @@ blog.service('postService', ['$http', function($http){
                 return e.message;
             });
     }
+
+    this.getPostsHeaders = function(){
+        return $http.get(postUrl)
+            .success(function(data){
+                return data;
+            })
+            .error(function(e){
+                return e.message;
+            });
+    }
 }]);
 
 blog.service('authServ',['$http', function($http){
@@ -45,8 +55,8 @@ blog.service('authServ',['$http', function($http){
     this.authorize = function(username, password){
         return $http.post('/authenticate',{username: username, password: password})
             .success(function(data){
-                //console.log('client side success');
-                //console.log(data);
+                console.log('client side success');
+                console.log(data);
                 token = data;
                 return true;
             })
@@ -55,13 +65,15 @@ blog.service('authServ',['$http', function($http){
                 //console.log(e);
                 return e;
             });
-    }
+    };
 
     this.getToken = function(){
         return token;
-    }
+    };
 
-
+    this.clearToken = function(){
+        token = {};
+    };
 }]);
 
 blog.controller('LoginCtrl',['$scope','authServ', function($scope, authService){
@@ -74,6 +86,9 @@ blog.controller('LoginCtrl',['$scope','authServ', function($scope, authService){
                 $scope.loginMessage = "You have succesfully logged in...";
                 $scope.messageStyle = "successBox";
                 //TODO: redirect to user page after time delay
+    //            $scope.login.username = "";
+  //              $scope.login.password = "";
+                console.log(authService.getToken().token);
             },function(error){
                 if (error.data.code >= 400 && error.data.code <= 500){
                     $scope.loginMessage = error.data.message;
@@ -111,6 +126,44 @@ blog.controller('PostCtrl',['$scope', '$routeParams','$sce','postService', funct
         });
 }]);
 
+blog.controller('UserCtrl',['$scope', 'postService', 'userService', function($scope, postService, userService){
+    userService.getUserInfo()
+        .then(function(user){
+            $scope.userInfo = user.data;
+        }, function(error){
+            console.log(error);
+        });
+
+    postService.getPostsHeaders()
+        .then(function(posts){
+            $scope.posts = posts.data;
+        }, function(error){
+            console.log(error);
+        });
+
+    $scope.clearToken = function(){
+        userService.clearToken();
+    }
+}]);
+
+blog.service('userService',['authServ','$http', function(authService,$http){
+    this.getUserInfo = function(){
+        var req = {
+            method: "GET",
+            url: "/api/user",
+            headers: {"Authorization":"Bearer "+authService.getToken().token}
+        };
+
+        return $http(req)
+            .success(function(data){
+                return data;
+            })
+            .error(function(e){
+                return e;
+            });
+    };
+}]);
+
 
 blog.config(function($routeProvider) {
     $routeProvider.
@@ -131,6 +184,10 @@ blog.config(function($routeProvider) {
         when('/login',{
             templateUrl: 'views/login_partial.html',
             controller: 'LoginCtrl'
+        }).
+        when('/user',{
+            templateUrl: 'views/user_portal.html',
+            controller: 'UserCtrl'
         }).
         otherwise('/');
 
