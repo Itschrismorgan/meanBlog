@@ -48,7 +48,7 @@ blog.service('postService', ['$http', function($http){
     }
 }]);
 
-blog.service('authServ',['$http', function($http){
+blog.service('authService',['$http', function($http){
     var token = {};
 
 
@@ -71,12 +71,21 @@ blog.service('authServ',['$http', function($http){
         return token;
     };
 
+    this.tokenExist = function(){
+        console.log(token);
+
+        if (token.token)
+            return true;
+        else
+            return false;
+    };
+
     this.clearToken = function(){
         token = {};
     };
 }]);
 
-blog.controller('LoginCtrl',['$scope','authServ', function($scope, authService){
+blog.controller('LoginCtrl',['$scope','authService', function($scope, authService){
     $scope.loginMessage = "Please login...";
     $scope.messageStyle = "informationalBox";
 
@@ -115,7 +124,7 @@ blog.controller('IndexCtrl',['$scope', '$sce','postService',function($scope, $sc
             });
 }]);
 
-blog.controller('PostCtrl',['$scope', '$routeParams','$sce','postService', function($scope, $routeParams, $sce, postService){
+blog.controller('PostCtrl',['$scope', '$routeParams','$sce','postService', 'authService', function($scope, $routeParams, $sce, postService, authService){
     //console.log($routeParams);
     postService.getPost($routeParams._id)
         .then(function(post){
@@ -124,6 +133,13 @@ blog.controller('PostCtrl',['$scope', '$routeParams','$sce','postService', funct
         }, function(error){
             console.log(error);
         });
+
+
+    $scope.isLoggedIn = function(){
+        console.log(authService.tokenExist());
+        return authService.tokenExist();
+    }
+
 }]);
 
 blog.controller('UserCtrl',['$scope', 'postService', 'userService', function($scope, postService, userService){
@@ -146,7 +162,7 @@ blog.controller('UserCtrl',['$scope', 'postService', 'userService', function($sc
     }
 }]);
 
-blog.service('userService',['authServ','$http', function(authService,$http){
+blog.service('userService',['authService','$http', function(authService,$http){
     this.getUserInfo = function(){
         var req = {
             method: "GET",
