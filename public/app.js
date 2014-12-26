@@ -27,7 +27,7 @@ blog.service('postService', ['$http', function($http){
     };
 
     this.getPost = function(id){
-        console.log('making call for post: '+id);
+        //console.log('making call for post: '+id);
         return $http.get(postUrl+"/"+id)
             .success(function(data){
                 return data;
@@ -55,8 +55,8 @@ blog.service('authServ',['$http', function($http){
     this.authorize = function(username, password){
         return $http.post('/authenticate',{username: username, password: password})
             .success(function(data){
-                console.log('client side success');
-                console.log(data);
+                //console.log('client side success');
+                //console.log(data);
                 token = data;
                 return true;
             })
@@ -86,9 +86,9 @@ blog.controller('LoginCtrl',['$scope','authServ', function($scope, authService){
                 $scope.loginMessage = "You have succesfully logged in...";
                 $scope.messageStyle = "successBox";
                 //TODO: redirect to user page after time delay
-    //            $scope.login.username = "";
-  //              $scope.login.password = "";
-                console.log(authService.getToken().token);
+                $scope.login.username = "";
+                $scope.login.password = "";
+                //console.log(authService.getToken().token);
             },function(error){
                 if (error.data.code >= 400 && error.data.code <= 500){
                     $scope.loginMessage = error.data.message;
@@ -188,6 +188,9 @@ blog.config(function($routeProvider) {
         when('/user',{
             templateUrl: 'views/user_portal.html',
             controller: 'UserCtrl'
+        }).
+        when('/post/edit/:_id',{
+            templateUrl: 'views/edit_post_partial.html'
         }).
         otherwise('/');
 

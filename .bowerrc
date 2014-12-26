@@ -1,0 +1,5 @@
+{
+  "directory": "public/extlibs/",
+  "analytics": false,
+  "timeout": 120000
+}
