@@ -155,7 +155,7 @@ blog.controller('PostCtrl',['$scope', '$routeParams','$sce','postService', 'auth
     };
 }]);
 
-blog.controller('EditCtrl',['$scope', '$routeParams','$sce','postService', 'authService', function($scope, $routeParams, $sce, postService, authService){
+blog.controller('EditCtrl',['$scope', '$routeParams','$sce','postService', 'authService', '$location', function($scope, $routeParams, $sce, postService, authService, $location){
     //console.log($routeParams);
     postService.getPost($routeParams._id)
         .then(function(post){
@@ -180,7 +180,9 @@ blog.controller('EditCtrl',['$scope', '$routeParams','$sce','postService', 'auth
 
         postService.updatePost(postToUpdate)
             .then(function(post){
-                console.log('success');
+                //console.log('success');
+                //console.log(post);
+                $location.url("/post/"+post.data._id);
                 //console.log(post);
             }, function(error){
                 console.log(error);

@@ -35,6 +35,7 @@ exports.updatePost = function(req, res){
     }
 
     posts.findOne({'_id':req.params.id},function(err, postToUpdate){
+        //console.log(req.body.post);
         postToUpdate.title = req.body.title;
         postToUpdate.author = req.body.author;
         postToUpdate.postPreview = req.body.preview;
