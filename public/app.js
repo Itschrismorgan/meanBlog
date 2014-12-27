@@ -5,7 +5,8 @@ var blog = angular.module('blog',['ngRoute']);
 
 blog.controller('MainCtrl',['$scope','$rootScope', function($scope,$rootScope){
     $scope.beginIndex = 0;
-    $scope.endIndex = 3;
+    $scope.endIndex = 4;
+    $scope.previewCountToShow = 4;
     $rootScope.currentYear = new Date().getFullYear();
 }]);
 
@@ -144,8 +145,10 @@ blog.controller('LoginCtrl',['$scope','authService','$location', function($scope
 
 blog.controller('IndexCtrl',['$scope', '$sce','postService',function($scope, $sce, postService){
     //console.log($scope.beginIndex);
-    postService.getPreviews($scope.beginIndex,$scope.endIndex)
-        .then(function(posts){
+
+    var callGetPreviews = function(beginIndex,endIndex){
+        postService.getPreviews(beginIndex,endIndex)
+            .then(function(posts){
                 for(var x=0;x<posts.length;x++){
                     posts[x].data.preview = $sce.trustAsHtml(posts[x].data.preview);
                 }
@@ -153,6 +156,30 @@ blog.controller('IndexCtrl',['$scope', '$sce','postService',function($scope, $sc
             }, function(error){
                 console.log(error);
             });
+    };
+
+
+    callGetPreviews($scope.beginIndex, $scope.endIndex);
+
+    $scope.goLeft = function(){
+        $scope.beginIndex -= $scope.previewCountToShow;
+        $scope.endIndex -= $scope.previewCountToShow;
+        callGetPreviews($scope.beginIndex, $scope.endIndex);
+    };
+
+    $scope.goRight = function(){
+        $scope.beginIndex += $scope.previewCountToShow;
+        $scope.endIndex += $scope.previewCountToShow;
+        postService.getPreviews($scope.beginIndex,$scope.endIndex)
+            .then(function(posts){
+                for(var x=0;x<posts.length;x++){
+                    posts[x].data.preview = $sce.trustAsHtml(posts[x].data.preview);
+                }
+                $scope.posts = posts.data;
+            }, function(error){
+                console.log(error);
+            });
+    };
 }]);
 
 blog.controller('PostCtrl',['$scope', '$routeParams','$sce','postService', 'authService', function($scope, $routeParams, $sce, postService, authService){
