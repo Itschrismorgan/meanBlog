@@ -28,15 +28,12 @@ exports.post = function(req, res){
 };
 
 exports.updatePost = function(req, res){
-    //console.log(req.body);
-    //res.set('Content-Type', 'application/json').json(req.body);
     if(!req.params.id || !req.body.preview || !req.body.title || !req.body.author || !req.body.post || !req.body.tags){
         res.status(400).set('Content-Type','application/json').json({code: 400, message:'Not all required elements provided.'})
     }
 
     posts.findOne({'_id':req.params.id},function(err, postToUpdate){
         if(postToUpdate){
-            //console.log(req.body.post);
             postToUpdate.title = req.body.title;
             postToUpdate.author = req.body.author;
             postToUpdate.postPreview = req.body.preview;
@@ -45,7 +42,6 @@ exports.updatePost = function(req, res){
             postToUpdate.save();
             res.set('Content-Type', 'application/json').json(postToUpdate);
         } else {
-            //this is a new post
             var postToCreate = {};
             postToCreate._id = req.params.id;
             postToCreate.title = req.body.title;
@@ -57,7 +53,6 @@ exports.updatePost = function(req, res){
                 if(err){
                     res.status(500).set('Content-Type','application/json').json({code: 500, message:'Some error occurred trying to create the post.'})
                     console.log('Error creating post!');
-                    //throw err;
                 }
                 res.set('Content-Type','application/json').json(createdPost);
             });

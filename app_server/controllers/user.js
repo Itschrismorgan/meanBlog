@@ -12,35 +12,27 @@ var tokenSecret = require('../../config/token');
 
 exports.createUser = function(req, res){
     var salt = genSalt();
-    //console.log(salt);
     var passwordHash = hash(req.body.password,salt);
-    //console.log(passwordHash);
-    //console.log(req.param);
+
     var userToCreate = {
         '_id': req.body.username,
         'name': {'first': req.body.firstName, 'last': req.body.lastName},
         'salt': salt,
         'hash': passwordHash
     };
-    //console.log(userToCreate);
 
     user.create(userToCreate, function(err, createdUser){
         if(err){
-            //console.log('Error creating user!');
             res.status(500).set('Content-Type','application/json').json({code: 500, message:'Error creating user'});
-            //throw err;
         }
         res.set('Content-Type','application/json').json({code: 200, message: 'User created'});
     });
 };
 
 exports.viewUser = function(req, res){
-    //var userName = req.params.username;
-    //console.log(req.headers);
     var token = req.headers.authorization.split(' ')[1];
     var payload = jwt.decode(token, tokenSecret.secret);
     var userName = payload.name;
-    //console.log(payload);
     user.findOne({'_id':userName}).exec(function(err,userToView){
         var returnJson = {};
         returnJson.username = userToView._id;
@@ -51,9 +43,6 @@ exports.viewUser = function(req, res){
 };
 
 exports.createToken = function(req, res){
-    //var username = req.param('username');
-    //var pass = req.param('password');
-
     var username = req.body.username;
     var pass = req.body.password;
 

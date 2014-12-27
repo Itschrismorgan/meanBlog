@@ -4,7 +4,7 @@
             <div class="innerStory">
                 <h3>{{post.title}}</h3>
                 <h5><em>posted on {{post.creationDate|date}}</em></h5>
-                <p>{{post.postPreview}} <a href="/#post/{{post._id}}"><em>read more...</em></a></p>
+                <p><span ng-bind-html="post.postPreview"></span> <a href="/#post/{{post._id}}"><em>read more...</em></a></p>
             </div>
         </div>
     </section>

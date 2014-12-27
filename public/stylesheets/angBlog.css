@@ -181,6 +181,7 @@
 .pagination {
     float: left;
     margin: 0 auto;
+    padding-top: 5em;
     width: 100%;
 }
 
@@ -239,11 +240,23 @@ footer {
     text-align: center;
 }
 
-.ta-editor {
-    min-height: 300px;
+
+.photoCredit {
+    font-family: "Cherry Swash",cursive;
+    text-align: center;
+    font-size: 0.6em;
+}
+
+.responsiveImage {
     height: auto;
-    overflow: auto;
-    font-family: inherit;
-    font-size: 100%;
-    margin:20px 0;
+    width: 100%;
+}
+
+.aboutPic {
+    margin: 0 auto;
+}
+
+.aboutPic > img {
+    display: block;
+    margin: 0 auto;
 }

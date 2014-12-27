@@ -24,7 +24,6 @@ blog.service('postService', ['$http','authService', function($http, authService)
     };
 
     this.getPost = function(id){
-        //console.log('making call for post: '+id);
         return $http.get(postUrl+"/"+id)
             .success(function(data){
                 return data;
@@ -86,14 +85,10 @@ blog.service('authService',['$http', function($http){
     this.authorize = function(username, password){
         return $http.post('/authenticate',{username: username, password: password})
             .success(function(data){
-                //console.log('client side success');
-                //console.log(data);
                 token = data;
                 return true;
             })
             .error(function(e){
-                //console.log('client side error');
-                //console.log(e);
                 return e;
             });
     };
@@ -103,8 +98,6 @@ blog.service('authService',['$http', function($http){
     };
 
     this.tokenExist = function(){
-        //console.log(token);
-
         if (token.token)
             return true;
         else
@@ -125,10 +118,8 @@ blog.controller('LoginCtrl',['$scope','authService','$location', function($scope
             .then(function(data){
                 $scope.loginMessage = "You have succesfully logged in...";
                 $scope.messageStyle = "successBox";
-                //TODO: redirect to user page after time delay
                 $scope.login.username = "";
                 $scope.login.password = "";
-                //console.log(authService.getToken().token);
                 $location.url("/user");
             },function(error){
                 if (error.data.code >= 400 && error.data.code <= 500){
@@ -144,13 +135,12 @@ blog.controller('LoginCtrl',['$scope','authService','$location', function($scope
 
 
 blog.controller('IndexCtrl',['$scope', '$sce','postService',function($scope, $sce, postService){
-    //console.log($scope.beginIndex);
 
     var callGetPreviews = function(beginIndex,endIndex){
         postService.getPreviews(beginIndex,endIndex)
             .then(function(posts){
-                for(var x=0;x<posts.length;x++){
-                    posts[x].data.preview = $sce.trustAsHtml(posts[x].data.preview);
+                for(var x=0;x<posts.data.length;x++){
+                    posts.data[x].postPreview = $sce.trustAsHtml(posts.data[x].postPreview);
                 }
                 $scope.posts = posts.data;
             }, function(error){
@@ -170,20 +160,11 @@ blog.controller('IndexCtrl',['$scope', '$sce','postService',function($scope, $sc
     $scope.goRight = function(){
         $scope.beginIndex += $scope.previewCountToShow;
         $scope.endIndex += $scope.previewCountToShow;
-        postService.getPreviews($scope.beginIndex,$scope.endIndex)
-            .then(function(posts){
-                for(var x=0;x<posts.length;x++){
-                    posts[x].data.preview = $sce.trustAsHtml(posts[x].data.preview);
-                }
-                $scope.posts = posts.data;
-            }, function(error){
-                console.log(error);
-            });
+        callGetPreviews($scope.beginIndex, $scope.endIndex);
     };
 }]);
 
 blog.controller('PostCtrl',['$scope', '$routeParams','$sce','postService', 'authService', function($scope, $routeParams, $sce, postService, authService){
-    //console.log($routeParams);
     postService.getPost($routeParams._id)
         .then(function(post){
             post.data.postText = $sce.trustAsHtml(post.data.postText);
@@ -194,13 +175,12 @@ blog.controller('PostCtrl',['$scope', '$routeParams','$sce','postService', 'auth
 
 
     $scope.isLoggedIn = function(){
-        //console.log(authService.tokenExist());
         return authService.tokenExist();
     };
 }]);
 
 blog.controller('EditCtrl',['$scope', '$routeParams','$sce','postService', 'authService', '$location', function($scope, $routeParams, $sce, postService, authService, $location){
-    //console.log($routeParams);
+
     postService.getPost($routeParams._id)
         .then(function(post){
             post.data.postText = $sce.trustAsHtml(post.data.postText);
@@ -224,17 +204,13 @@ blog.controller('EditCtrl',['$scope', '$routeParams','$sce','postService', 'auth
 
         postService.updatePost(postToUpdate)
             .then(function(post){
-                //console.log('success');
-                //console.log(post);
                 $location.url("/post/"+post.data._id);
-                //console.log(post);
             }, function(error){
                 console.log(error);
             });
     };
 
     $scope.isLoggedIn = function(){
-        //console.log(authService.tokenExist());
         return authService.tokenExist();
     };
 }]);
@@ -255,17 +231,13 @@ blog.controller('CreateCtrl',['$scope','postService', 'authService', '$location'
 
         postService.createPost(postToCreate)
             .then(function(post){
-                //console.log('success');
-                //console.log(post);
                 $location.url("/post/"+post.data._id);
-                //console.log(post);
             }, function(error){
                 console.log(error);
             });
     };
 
     $scope.isLoggedIn = function(){
-        //console.log(authService.tokenExist());
         return authService.tokenExist();
     };
 }]);
