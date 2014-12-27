@@ -183,7 +183,6 @@ blog.controller('EditCtrl',['$scope', '$routeParams','$sce','postService', 'auth
 
     postService.getPost($routeParams._id)
         .then(function(post){
-            post.data.postText = $sce.trustAsHtml(post.data.postText);
             post.data.tags = post.data.tags.join(',');
             $scope.post = post.data;
         }, function(error){
