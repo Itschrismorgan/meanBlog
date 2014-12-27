@@ -98,7 +98,7 @@ blog.service('authService',['$http', function($http){
     };
 }]);
 
-blog.controller('LoginCtrl',['$scope','authService', function($scope, authService){
+blog.controller('LoginCtrl',['$scope','authService','$location', function($scope, authService, $location){
     $scope.loginMessage = "Please login...";
     $scope.messageStyle = "informationalBox";
 
@@ -111,6 +111,7 @@ blog.controller('LoginCtrl',['$scope','authService', function($scope, authServic
                 $scope.login.username = "";
                 $scope.login.password = "";
                 //console.log(authService.getToken().token);
+                $location.url("/user");
             },function(error){
                 if (error.data.code >= 400 && error.data.code <= 500){
                     $scope.loginMessage = error.data.message;

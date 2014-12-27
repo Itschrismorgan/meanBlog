@@ -2,6 +2,7 @@
     <h2>{{post.title}}</h2>
     <div ng-show="isLoggedIn()">
         <a href="#post/edit/{{post._id}}">edit</a>
+        <a href="#user">User Portal</a>
     </div>
     <h4>Posted by {{post.author}} on {{post.creationDate|date}}</h4>
     <div class="blogPost" ng-bind-html="post.postText">

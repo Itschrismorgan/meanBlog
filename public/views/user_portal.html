@@ -6,7 +6,7 @@
     </div>
     <div class="postList">
         <div class="postLink" ng-repeat="post in posts">
-            <a href="/posts/edit/{{post._id}}">Edit</a>: <a href="/posts/{{post._id}}">{{post.title}}</a> ({{post.creationDate|date}})
+            <a href="#post/edit/{{post._id}}">Edit</a>: <a href="/#post/{{post._id}}">{{post.title}}</a> ({{post.creationDate|date}})
         </div>
     </div>
     <button ng-click="clearToken()">Logout</button>
