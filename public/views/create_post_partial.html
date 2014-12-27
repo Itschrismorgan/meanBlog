@@ -1,0 +1,34 @@
+<div class="basicContainer">
+    <h1>Create a post for the blog!</h1>
+    <div>
+        <ul>
+            <li>
+                <label>SLUG</label>
+                <input class="inputFields" name="slug" ng-model="post._id" value="{{post._id}}">
+            </li>
+            <li>
+                <label>Title</label>
+                <input class="inputFields" name="title" ng-model="post.title" value="{{post.title}}">
+            </li>
+            <li>
+                <label>Author</label>
+                <input class="inputFields" name="author" ng-model="post.author" value="{{post.author}}">
+            </li>
+            <li>
+                <label>Preview</label>
+                <textarea rows="15" cols="35" id="preview" name="preview" ng-model="post.postPreview">{{post.postPreview}}</textarea>
+            </li>
+            <li>
+                <label>Post</label>
+                <textarea rows="50" cols="100" id="postText" ng-model="post.postText">{{post.postText}}</textarea>
+            </li>
+            <li>
+                <label>Tags</label>
+                <input id="tags" name="tags" ng-model="post.tags" value="{{post.tags}}">
+            </li>
+            <li>
+                <button id="submitBtn" ng-click="createPost()">Update</button>
+            </li>
+        </ul>
+    </div>
+</div>

@@ -58,7 +58,24 @@ blog.service('postService', ['$http','authService', function($http, authService)
             .error(function(e){
                 return e.message;
             })
-    }
+    };
+
+    this.createPost = function(postJson){
+        var reqUrl = postUrl+"/"+postJson.slug;
+        var req = {
+            method: "POST",
+            url: reqUrl,
+            headers: {"Authorization":"Bearer "+authService.getToken().token},
+            data: postJson
+        };
+        return $http(req)
+            .success(function(data){
+                return data;
+            })
+            .error(function(e){
+                return e.message;
+            })
+    };
 }]);
 
 blog.service('authService',['$http', function($http){
@@ -195,6 +212,37 @@ blog.controller('EditCtrl',['$scope', '$routeParams','$sce','postService', 'auth
     };
 }]);
 
+
+blog.controller('CreateCtrl',['$scope','postService', 'authService', '$location', function($scope, postService, authService, $location){
+    $scope.createPost = function(){
+        var tagArray = $scope.post.tags.split(',');
+
+        var postToCreate = {
+            'slug': $scope.post._id,
+            'title': $scope.post.title,
+            'author': $scope.post.author,
+            'preview': $scope.post.postPreview,
+            'post': $scope.post.postText,
+            'tags': tagArray
+        };
+
+        postService.createPost(postToCreate)
+            .then(function(post){
+                //console.log('success');
+                //console.log(post);
+                $location.url("/post/"+post.data._id);
+                //console.log(post);
+            }, function(error){
+                console.log(error);
+            });
+    };
+
+    $scope.isLoggedIn = function(){
+        //console.log(authService.tokenExist());
+        return authService.tokenExist();
+    };
+}]);
+
 blog.controller('UserCtrl',['$scope', 'postService', 'userService', function($scope, postService, userService){
     userService.getUserInfo()
         .then(function(user){
@@ -242,6 +290,10 @@ blog.config(function($routeProvider) {
         }).
         when('/about',{
             templateUrl: 'views/about_partial.html'
+        }).
+        when('/post/create',{
+            templateUrl: 'views/create_post_partial.html',
+            controller: 'CreateCtrl'
         }).
         when('/post/:_id',{
             templateUrl: 'views/post_partial.html',

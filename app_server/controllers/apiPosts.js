@@ -35,13 +35,33 @@ exports.updatePost = function(req, res){
     }
 
     posts.findOne({'_id':req.params.id},function(err, postToUpdate){
-        //console.log(req.body.post);
-        postToUpdate.title = req.body.title;
-        postToUpdate.author = req.body.author;
-        postToUpdate.postPreview = req.body.preview;
-        postToUpdate.postText = req.body.post;
-        postToUpdate.tags = req.body.tags;
-        postToUpdate.save();
-        res.set('Content-Type', 'application/json').json(postToUpdate);
+        if(postToUpdate){
+            //console.log(req.body.post);
+            postToUpdate.title = req.body.title;
+            postToUpdate.author = req.body.author;
+            postToUpdate.postPreview = req.body.preview;
+            postToUpdate.postText = req.body.post;
+            postToUpdate.tags = req.body.tags;
+            postToUpdate.save();
+            res.set('Content-Type', 'application/json').json(postToUpdate);
+        } else {
+            //this is a new post
+            var postToCreate = {};
+            postToCreate._id = req.params.id;
+            postToCreate.title = req.body.title;
+            postToCreate.author = req.body.author;
+            postToCreate.postPreview = req.body.preview;
+            postToCreate.postText = req.body.post;
+            postToCreate.tags = req.body.tags;
+            posts.create(postToCreate, function(err, createdPost){
+                if(err){
+                    res.status(500).set('Content-Type','application/json').json({code: 500, message:'Some error occurred trying to create the post.'})
+                    console.log('Error creating post!');
+                    //throw err;
+                }
+                res.set('Content-Type','application/json').json(createdPost);
+            });
+        }
     });
 };
+
