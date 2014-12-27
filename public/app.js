@@ -3,17 +3,13 @@
  */
 var blog = angular.module('blog',['ngRoute']);
 
-
-
-
-
 blog.controller('MainCtrl',['$scope','$rootScope', function($scope,$rootScope){
     $scope.beginIndex = 0;
     $scope.endIndex = 3;
     $rootScope.currentYear = new Date().getFullYear();
 }]);
 
-blog.service('postService', ['$http', function($http){
+blog.service('postService', ['$http','authService', function($http, authService){
     var postUrl = '/api/posts';
 
     this.getPreviews = function(beginIndex,endIndex){
@@ -35,7 +31,7 @@ blog.service('postService', ['$http', function($http){
             .error(function(e){
                 return e.message;
             });
-    }
+    };
 
     this.getPostsHeaders = function(){
         return $http.get(postUrl)
@@ -45,6 +41,23 @@ blog.service('postService', ['$http', function($http){
             .error(function(e){
                 return e.message;
             });
+    };
+
+    this.updatePost = function(postJson){
+        var reqUrl = postUrl+"/"+postJson.slug;
+        var req = {
+            method: "POST",
+            url: reqUrl,
+            headers: {"Authorization":"Bearer "+authService.getToken().token},
+            data: postJson
+        };
+        return $http(req)
+            .success(function(data){
+                return data;
+            })
+            .error(function(e){
+                return e.message;
+            })
     }
 }]);
 
@@ -72,7 +85,7 @@ blog.service('authService',['$http', function($http){
     };
 
     this.tokenExist = function(){
-        console.log(token);
+        //console.log(token);
 
         if (token.token)
             return true;
@@ -136,10 +149,47 @@ blog.controller('PostCtrl',['$scope', '$routeParams','$sce','postService', 'auth
 
 
     $scope.isLoggedIn = function(){
-        console.log(authService.tokenExist());
+        //console.log(authService.tokenExist());
         return authService.tokenExist();
-    }
+    };
+}]);
 
+blog.controller('EditCtrl',['$scope', '$routeParams','$sce','postService', 'authService', function($scope, $routeParams, $sce, postService, authService){
+    //console.log($routeParams);
+    postService.getPost($routeParams._id)
+        .then(function(post){
+            post.data.postText = $sce.trustAsHtml(post.data.postText);
+            post.data.tags = post.data.tags.join(',');
+            $scope.post = post.data;
+        }, function(error){
+            console.log(error);
+        });
+
+    $scope.updatePost = function(){
+        var tagArray = $scope.post.tags.split(',');
+
+        var postToUpdate = {
+            'slug': $scope.post._id,
+            'title': $scope.post.title,
+            'author': $scope.post.author,
+            'preview': $scope.post.postPreview,
+            'post': $scope.post.postText,
+            'tags': tagArray
+        };
+
+        postService.updatePost(postToUpdate)
+            .then(function(post){
+                console.log('success');
+                //console.log(post);
+            }, function(error){
+                console.log(error);
+            });
+    };
+
+    $scope.isLoggedIn = function(){
+        //console.log(authService.tokenExist());
+        return authService.tokenExist();
+    };
 }]);
 
 blog.controller('UserCtrl',['$scope', 'postService', 'userService', function($scope, postService, userService){
@@ -206,7 +256,8 @@ blog.config(function($routeProvider) {
             controller: 'UserCtrl'
         }).
         when('/post/edit/:_id',{
-            templateUrl: 'views/edit_post_partial.html'
+            templateUrl: 'views/edit_post_partial.html',
+            controller: 'EditCtrl'
         }).
         otherwise('/');
 

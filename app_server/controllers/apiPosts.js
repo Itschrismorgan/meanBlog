@@ -4,9 +4,6 @@
 
 var mongoose = require('mongoose');
 var posts = mongoose.model('Posts');
-var userCtrl = require('./user');
-
-
 
 exports.posts = function(req, res){
     if(req.query['index'] && req.query['count']){
@@ -25,12 +22,25 @@ exports.posts = function(req, res){
 };
 
 exports.post = function(req, res){
-    posts.findOne({'_id':req.params.id}).select('-postPreview').exec(function(err, postToView){
+    posts.findOne({'_id':req.params.id}).exec(function(err, postToView){
         res.set('Content-Type', 'application/json').send(postToView);
     });
 };
 
 exports.updatePost = function(req, res){
-    console.log('check');
-    res.set('Content-Type', 'application/json').json({hello: 'world'});
+    //console.log(req.body);
+    //res.set('Content-Type', 'application/json').json(req.body);
+    if(!req.params.id || !req.body.preview || !req.body.title || !req.body.author || !req.body.post || !req.body.tags){
+        res.status(400).set('Content-Type','application/json').json({code: 400, message:'Not all required elements provided.'})
+    }
+
+    posts.findOne({'_id':req.params.id},function(err, postToUpdate){
+        postToUpdate.title = req.body.title;
+        postToUpdate.author = req.body.author;
+        postToUpdate.postPreview = req.body.preview;
+        postToUpdate.postText = req.body.post;
+        postToUpdate.tags = req.body.tags;
+        postToUpdate.save();
+        res.set('Content-Type', 'application/json').json(postToUpdate);
+    });
 };
