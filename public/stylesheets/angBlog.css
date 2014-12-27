@@ -36,7 +36,7 @@
 }
 
 
-@media screen and (min-width: 500px) {
+@media screen and (min-width: 31.25em) {
     .mainNav {
         margin: 50px auto;
         height: 40px;
@@ -73,7 +73,7 @@
     }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 31.25em) {
     #mainNav {
         margin: 50px auto;
         height: 40px;
@@ -111,14 +111,14 @@
 }
 
 
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 50em) {
     .story {
         width:50%;
         float:left;
         height: 15em;
     }
 }
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 50em) {
     .story {
         width:100%;
         float:left;
@@ -150,17 +150,17 @@
 #mainStory {
     margin: 0 auto;
 }
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 50em) {
     #mainStory {
         width: 60%;
     }
 }
-@media screen and (min-width: 350px) and (max-width: 800px) {
+@media screen and (min-width: 21.9em) and (max-width: 50em) {
     #mainStory {
         width: 80%;
     }
 }
-@media screen and (max-width: 350px) {
+@media screen and (max-width: 21.8em) {
     #mainStory {
         width: 95%;
     }
