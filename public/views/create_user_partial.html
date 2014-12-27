@@ -1,0 +1,26 @@
+<div class="basicContainer">
+    <h1>Create a user for the blog!</h1>
+    <div>
+        <ul>
+            <li>
+                <label for="username">Username</label>
+                <input id="username" name="username" ng-model="user.username">
+            </li>
+            <li>
+                <label for="firstName">First Name</label>
+                <input id="firstName" name="firstName" ng-model="user.firstName">
+            </li>
+            <li>
+                <label for="lastName">Last Name</label>
+                <input id="lastName" name="lastName" ng-model="user.lastName">
+            </li>
+            <li>
+                <label for="password">password</label>
+                <input id="password" name="password" ng-model="user.password">
+            </li>
+            <li>
+                <button type="submit" id="submitBtn" ng-click="createUser()">Create User</button>
+            </li>
+        </ul>
+    </div>
+</div>

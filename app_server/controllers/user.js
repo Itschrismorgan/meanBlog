@@ -11,47 +11,14 @@ var tokenSecret = require('../../config/token');
 
 
 exports.createUser = function(req, res){
-    if(req.session.isLoggedIn) {
-        res.render('createUsers', {title: 'Create a user'})
-    } else {
-        user.count({}, function(err, c) {
-            if (c === 0) {
-                res.render('createUsers', {title: 'Create a user'});
-            } else {
-                console.log('No logged in! Create User!');
-                res.redirect('/');
-            }
-        });
-    }
-};
-
-exports.saveUser = function(req, res, next){
-    // validate input
-    if(req.session.isLoggedIn){
-        createUser(req,res);
-    } else {
-        user.count({}, function(err, c){
-            if (c === 0){
-                createUser(req,res);
-            } else {
-                console.log('Invalid session!');
-                res.redirect('/');
-            }
-
-        });
-    }
-};
-
-
-var createUser = function(req, res){
     var salt = genSalt();
     //console.log(salt);
-    var passwordHash = hash(req.param('password'),salt);
+    var passwordHash = hash(req.body.password,salt);
     //console.log(passwordHash);
     //console.log(req.param);
     var userToCreate = {
-        '_id': req.param('username'),
-        'name': {'first': req.param('firstName'), 'last': req.param('lastName')},
+        '_id': req.body.username,
+        'name': {'first': req.body.firstName, 'last': req.body.lastName},
         'salt': salt,
         'hash': passwordHash
     };
@@ -60,17 +27,11 @@ var createUser = function(req, res){
     user.create(userToCreate, function(err, createdUser){
         if(err){
             //console.log('Error creating user!');
-            throw err;
+            res.status(500).set('Content-Type','application/json').json({code: 500, message:'Error creating user'});
+            //throw err;
         }
-        res.redirect('/user/'+createdUser._id);
+        res.set('Content-Type','application/json').json({code: 200, message: 'User created'});
     });
-};
-
-exports.getUserObject = function(req){
-    var userObj = {};
-    userObj.isLoggedIn = req.session.isLoggedIn;
-    //console.log(req.session);
-    return userObj;
 };
 
 exports.viewUser = function(req, res){

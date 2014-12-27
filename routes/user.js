@@ -8,11 +8,7 @@ var tokenSecret = require('../config/token');
 
 
 module.exports = function(app){
-    app.get('/user/create', ctrl.createUser);
-    app.post('/user/create', ctrl.saveUser);
-    app.get('/user/:username', ctrl.viewUser);
-
     app.post('/authenticate', ctrl.createToken);
     app.get('/api/user', expressJwt({secret: tokenSecret.secret}),ctrl.viewUser);
-
+    app.post('/api/user', expressJwt({secret: tokenSecret.secret}),ctrl.createUser);
 };

@@ -243,7 +243,7 @@ blog.controller('CreateCtrl',['$scope','postService', 'authService', '$location'
     };
 }]);
 
-blog.controller('UserCtrl',['$scope', 'postService', 'userService', function($scope, postService, userService){
+blog.controller('UserCtrl',['$scope', 'postService', 'userService', '$location', function($scope, postService, userService, $location){
     userService.getUserInfo()
         .then(function(user){
             $scope.userInfo = user.data;
@@ -258,8 +258,29 @@ blog.controller('UserCtrl',['$scope', 'postService', 'userService', function($sc
             console.log(error);
         });
 
-    $scope.clearToken = function(){
-        userService.clearToken();
+    $scope.logout = function(){
+        userService.logout();
+        $location.url('/');
+    }
+}]);
+
+blog.controller('CreateUserCtrl',['$scope', 'userService', function($scope, userService){
+    $scope.createUser = function(){
+        var userToCreate = {
+            username: $scope.user.username,
+            firstName: $scope.user.firstName,
+            lastName: $scope.user.lastName,
+            password: $scope.user.password
+        };
+
+        console.log(userToCreate);
+
+        userService.createUser(userToCreate)
+            .then(function(data){
+                console.log(data);
+            }, function(error){
+                console.log(error);
+            })
     }
 }]);
 
@@ -279,6 +300,27 @@ blog.service('userService',['authService','$http', function(authService,$http){
                 return e;
             });
     };
+
+    this.createUser = function(userToCreate){
+        var req = {
+            method: "POST",
+            url: "/api/user",
+            headers: {"Authorization":"Bearer "+authService.getToken().token},
+            data: userToCreate
+        };
+
+        return $http(req)
+            .success(function(data){
+                return data;
+            })
+            .error(function(e){
+                return e;
+            });
+    };
+
+    this.logout = function(){
+        authService.clearToken();
+    }
 }]);
 
 
@@ -309,6 +351,10 @@ blog.config(function($routeProvider) {
         when('/user',{
             templateUrl: 'views/user_portal.html',
             controller: 'UserCtrl'
+        }).
+        when('/user/create',{
+            templateUrl: 'views/create_user_partial.html',
+            controller: 'CreateUserCtrl'
         }).
         when('/post/edit/:_id',{
             templateUrl: 'views/edit_post_partial.html',
