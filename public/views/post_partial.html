@@ -1,10 +1,12 @@
-<section id="mainStory">
-    <h2>{{post.title}}</h2>
-    <div ng-show="isLoggedIn()">
-        <a href="#post/edit/{{post._id}}">edit</a>
-        <a href="#user">User Portal</a>
-    </div>
-    <h4>Posted by {{post.author}} on {{post.creationDate|date}}</h4>
-    <div class="blogPost" ng-bind-html="post.postText">
-    </div>
-</section>
+<div class="row">
+    <section id="mainStory" class="col-xs-9 col-xs-offset-2">
+        <h2>{{post.title}}</h2>
+        <div ng-show="isLoggedIn()">
+            <a href="#post/edit/{{post._id}}">edit</a>
+            <a href="#user">User Portal</a>
+        </div>
+        <h4>Posted by {{post.author}} on {{post.creationDate|date}}</h4>
+        <div class="blogPost" ng-bind-html="post.postText">
+        </div>
+    </section>
+</div>

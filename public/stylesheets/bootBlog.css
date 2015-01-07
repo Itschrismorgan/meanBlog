@@ -60,3 +60,11 @@ footer {
     text-align: center;
     font-size: 0.8em;
 }
+
+#mainStory > h2{
+    font-family: 'Bilbo', cursive;
+    font-size:35px;
+}
+#mainStory > h6{
+    font-family: 'Cherry Swash', cursive;
+}
