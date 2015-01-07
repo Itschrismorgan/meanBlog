@@ -1,0 +1,62 @@
+.headerDiv {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url('/images/banner.jpg');
+    min-height: 14em;
+}
+
+.mainTitle {
+    font-family: 'Bilbo Swash Caps', cursive;
+    font-size: 5em;
+    margin-bottom: 0.4em;
+    padding-top: 0.5em;
+}
+
+.menuLink {
+    color: black;
+    font-family: 'Cherry Swash', cursive;
+}
+
+.digest {
+    margin-top: 2em;
+}
+
+.story {
+    height: 17em;
+}
+
+.innerStory > h2 {
+    font-family: 'Bilbo', cursive;
+    font-weight: bold;
+}
+.innerStory > h5 {
+    font-family: 'Varela Round', cursive;
+}
+.innerStory > p {
+    font-family: 'Varela Round', sans-serif;
+    padding: 0.1em;
+}
+
+.leftPage{
+    text-align: left;
+    color: blue;
+    font-family: 'Varela Round', sans-serif;
+}
+.rightPage{
+    text-align: right;
+    color: blue;
+    font-family: 'Varela Round', sans-serif;
+}
+
+footer {
+    font-family: 'Cherry Swash', cursive;
+    margin-top: 4em;
+    font-size: 10pt;
+    text-align: center;
+}
+
+.photoCredit {
+    font-family: "Cherry Swash",cursive;
+    text-align: center;
+    font-size: 0.8em;
+}

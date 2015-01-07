@@ -37,7 +37,7 @@ app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
 //for dev
-//swig.setDefaults({cache: false});
+swig.setDefaults({cache: false});
 
 // development only
 if ('development' == app.get('env')) {

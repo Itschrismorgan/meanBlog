@@ -1,15 +1,19 @@
-<section class="mainBody">
-    <section class="digest">
-        <div class="story" ng-repeat="post in posts">
-            <div class="innerStory">
-                <h3>{{post.title}}</h3>
-                <h5><em>posted on {{post.creationDate|date}}</em></h5>
-                <p><span ng-bind-html="post.postPreview"></span> <a href="/#post/{{post._id}}"><em>read more...</em></a></p>
+<section class="row mainBody">
+    <section class="col-md-11 col-md-offset-1 digest">
+        <div class="row">
+            <div class="col-sm-6 story" ng-repeat="post in posts">
+                <div class="innerStory">
+                    <h2>{{post.title}}</h2>
+                    <h5><small><em>posted on {{post.creationDate|date}}</em></small></h5>
+                    <p><span ng-bind-html="post.postPreview"></span> <a href="/#post/{{post._id}}"><em>read more...</em></a></p>
+                </div>
             </div>
         </div>
     </section>
-    <div class="pagination">
-        <div class="leftPage" ng-click="goLeft()">Next Posts</div>
-        <div class="rightPage" ng-click="goRight()">Previous Posts</div>
+    <div class="col-md-11 col-md-offset-1">
+        <div class="row">
+            <div class="col-xs-5 leftPage" ng-click="goLeft()">Next Posts</div>
+            <div class="col-xs-5 rightPage" ng-click="goRight()">Previous Posts</div>
+        </div>
     </div>
 </section>
