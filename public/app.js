@@ -358,6 +358,10 @@ blog.config(function($routeProvider) {
             templateUrl: 'views/edit_post_partial.html',
             controller: 'EditCtrl'
         }).
+        when('/school/multiplication',{
+            templateUrl: 'views/multi_practice.html',
+            controller: 'MultiPractice'
+        }).
         otherwise('/');
 
 });

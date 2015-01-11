@@ -72,3 +72,7 @@ footer {
 .mainFont {
     font-family: 'Varela Round', sans-serif;
 }
+
+.loginMessage {
+    text-align: center;
+}

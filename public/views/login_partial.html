@@ -1,18 +1,30 @@
-<section id="loginForm" class="basicContainer">
-    <div class="loginMessage" ng-class="messageStyle">
-        <span>{{loginMessage}}</span>
+<section>
+    <div class="row">
+      <div class="col-xs-4 col-xs-offset-4 loginMessage" ng-class="messageStyle">
+          <p><span>{{loginMessage}}</span></p>
+      </div>
     </div>
-    <div class="blogForm">
-        <div>
-            <label for="username">User Name:</label>
-            <input id="username" name="username" ng-model="login.username">
-        </div>
-        <div>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" ng-model="login.password">
-        </div>
-        <div>
-            <input type="submit" ng-click="authenticate()" value="Login">
-        </div>
+    <div class="row">
+      <div class="col-xs-6 col-xs-offset-4">
+          <form class="form-horizontal">
+            <div class="form-group">
+              <label for="username" class="col-sm-2 control-label">User Name:</label>
+              <div class="col-sm-4">
+                <input class="form-control" type="username" id="username" name="username" ng-model="login.username">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="password" class="col-sm-2 control-label">Password:</label>
+              <div class="col-sm-4">
+                <input class="form-control" type="password" id="password" name="password" ng-model="login.password">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-4">
+                <button type="submit" class="btn btn-default" ng-click="authenticate()">Login</button>
+              </div>
+            </div>
+          </form
+      </div>
     </div>
 </section>
