@@ -21,9 +21,6 @@
     margin-top: 2em;
 }
 
-.story {
-    height: 17em;
-}
 
 .innerStory > h2 {
     font-family: 'Bilbo', cursive;
@@ -75,4 +72,8 @@ footer {
 
 .loginMessage {
     text-align: center;
+}
+
+.clearBoth {
+    clear: both;
 }
