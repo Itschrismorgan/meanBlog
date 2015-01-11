@@ -1,14 +1,18 @@
-<section id="userHub" class="basicContainer">
-    <h2>Username: {{userInfo.username}}</h2>
-    <h4>Name: {{userInfo.name.first}} {{userInfo.name.last}}</h4>
-    <div>
-        <a href="#post/create">Create Post</a>
-        <a href="#user/create">Create User</a>
-    </div>
-    <div class="postList">
-        <div class="postLink" ng-repeat="post in posts">
-            <a href="#post/edit/{{post._id}}">Edit</a>: <a href="/#post/{{post._id}}">{{post.title}}</a> ({{post.creationDate|date}})
+<section>
+    <div class="row">
+        <div class="col-md-10 col-md-offset-2">
+            <h2>Username: {{userInfo.username}}</h2>
+            <h4>Name: {{userInfo.name.first}} {{userInfo.name.last}}</h4>
+            <div>
+                <p><a href="#post/create">Create Post</a></p>
+                <p><a href="#user/create">Create User</a></p>
+            </div>
+            <div class="postList">
+                <div class="postLink" ng-repeat="post in posts">
+                    <a href="#post/edit/{{post._id}}">Edit</a>: <a href="/#post/{{post._id}}">{{post.title}}</a> ({{post.creationDate|date}})
+                </div>
+            </div>
+            <button class="btn btn-default" ng-click="logout()">Logout</button>
         </div>
     </div>
-    <button ng-click="logout()">Logout</button>
 </section>

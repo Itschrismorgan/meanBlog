@@ -1,26 +1,36 @@
-<div class="basicContainer">
-    <h1>Create a user for the blog!</h1>
-    <div>
-        <ul>
-            <li>
-                <label for="username">Username</label>
-                <input id="username" name="username" ng-model="user.username">
-            </li>
-            <li>
-                <label for="firstName">First Name</label>
-                <input id="firstName" name="firstName" ng-model="user.firstName">
-            </li>
-            <li>
-                <label for="lastName">Last Name</label>
-                <input id="lastName" name="lastName" ng-model="user.lastName">
-            </li>
-            <li>
-                <label for="password">password</label>
-                <input id="password" name="password" ng-model="user.password">
-            </li>
-            <li>
-                <button type="submit" id="submitBtn" ng-click="createUser()">Create User</button>
-            </li>
-        </ul>
+<div class="row">
+    <div class="col-md-10 col-md-offset-1">
+        <h1 class="">Create a user for the blog!</h1>
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label for="username" class="col-md-2 control-label">Username</label>
+                <div class="col-md-8">
+                    <input class="form-control" id="username" name="username" ng-model="user.username">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="firstName" class="col-md-2 control-label">First Name</label>
+                <div class="col-md-8">
+                    <input class="form-control" id="firstName" name="firstName" ng-model="user.firstName">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="lastName" class="col-md-2 control-label">Last Name</label>
+                <div class="col-md-8">
+                    <input class="form-control" id="lastName" name="lastName" ng-model="user.lastName">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="password" class="col-md-2 control-label">Password</label>
+                <div class="col-md-8">
+                    <input class="form-control" id="password" name="password" ng-model="user.password">
+                </div>
+            </div>
+           <div class="form-group">
+                <div class="col-md-8 col-md-offset-2">
+                    <button type="submit" class="btn btn-default" ng-click="createUser()">Create User</button>
+                </div>
+            </div>
+        </form>
     </div>
 </div>

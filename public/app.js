@@ -1,7 +1,7 @@
 /**
  * Created by chrismorgan on 12/12/14.
  */
-var blog = angular.module('blog',['ngRoute']);
+var blog = angular.module('blog',['ngRoute','textAngular']);
 
 blog.controller('MainCtrl',['$scope','$rootScope', function($scope,$rootScope){
     $scope.beginIndex = 0;

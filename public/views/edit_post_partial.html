@@ -1,34 +1,48 @@
-<div class="basicContainer">
-    <h1>Edit a post for the blog!</h1>
-    <div>
-        <ul>
-            <li>
-                <label>SLUG</label>
-                <input class="inputFields" name="slug" value="{{post._id}}" readonly>
-            </li>
-            <li>
-                <label>Title</label>
-                <input class="inputFields" name="title" ng-model="post.title" value="{{post.title}}">
-            </li>
-            <li>
-                <label>Author</label>
-                <input class="inputFields" name="author" ng-model="post.author" value="{{post.author}}">
-            </li>
-            <li>
-                <label>Preview</label>
-                <textarea rows="15" cols="35" id="preview" name="preview" ng-model="post.postPreview"></textarea>
-            </li>
-            <li>
-                <label>Post</label>
-                <textarea rows="50" cols="100" id="postText" ng-model="post.postText"></textarea>
-            </li>
-            <li>
-                <label>Tags</label>
-                <input id="tags" name="tags" ng-model="post.tags" value="{{post.tags}}">
-            </li>
-            <li>
-                <button id="submitBtn" ng-click="updatePost()">Update</button>
-            </li>
-        </ul>
+<div class="row">
+    <div class="col-md-10 col-md-offset-1">
+        <h1 class="">Edit a post for the blog!</h1>
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label for="slug" class="col-md-2 control-label">SLUG</label>
+                <div class="col-md-8">
+                    <input class="form-control" id="slug" name="slug" value="{{post._id}}" readonly>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="title" class="col-md-2 control-label">Title</label>
+                <div class="col-md-8">
+                    <input class="form-control" id="title" name="title" value="{{post.title}}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="author" class="col-md-2 control-label">Author</label>
+                <div class="col-md-8">
+                    <input class="form-control" id="author" name="author" value="{{post.author}}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="preview" class="col-md-2 control-label">Preview</label>
+                <div class="col-md-8">
+                    <div text-angular id="preview" ng-model="post.postPreview"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="post" class="col-md-2 control-label">Post</label>
+                <div class="col-md-8">
+                    <div text-angular id="post" ng-model="post.postText"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="tags" class="col-md-2 control-label">Tags</label>
+                <div class="col-md-8">
+                    <input class="form-control" id="tags" name="tags" value="{{post.tags}}">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-8 col-md-offset-2">
+                    <button type="submit" class="btn btn-default" ng-click="updatePost()">Update</button>
+                </div>
+            </div>
+        </form>
     </div>
 </div>
