@@ -15,6 +15,10 @@ Server side is powered by [Node.JS](http://www.nodejs.org).  This handles both t
 ### Express
 [Express](http://www.expressjs.com) is a HTTP server framework.
 
+### JWT
+Authentication and authorization for proctect server routes are handled by [JSON Web Tokens](http://jwt.io/) instead of session.
+
+
 ### Angular.JS
 [AngularJS](http://www.angularjs.org) is a powerful client side Javascript framework.
 
